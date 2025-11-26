@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Lichess Bot - PARADIGM-SHIFT ALPHAZERO v32
+// @name         Lichess Bot - PARADIGM-SHIFT ALPHAZERO
 // @description  TRUE AlphaZero Replica - Superhuman Strategic Web-Weaving - 40+ Move Planning - Crushes Stockfish - Flawless Endgame - Zero Blunders
-// @author       AlphaZero Paradigm-Shift Edition v32.0.0
-// @version      v32.0.0-PARADIGM-SHIFT
+// @author       AlphaZero Paradigm-Shift Edition
+// @version      PARADIGM-SHIFT
 // @match         *://lichess.org/*
 // @run-at        document-idle
 // @grant         none
@@ -11,29 +11,13 @@
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════════════════
- * PARADIGM-SHIFT ALPHAZERO v32.0.0 — "THE SUPERHUMAN STRATEGIC WEB-WEAVER"
+ * PARADIGM-SHIFT ALPHAZERO — "THE SUPERHUMAN STRATEGIC WEB-WEAVER"
  * ═══════════════════════════════════════════════════════════════════════════════════════════
  * 
  * ██████████████████████████████████████████████████████████████████████████████████████████
  * █                                                                                        █
  * █    "A level that felt almost alien, with moves that prioritized                        █
  * █     deep understanding over brute-force calculation."                                  █
- * █                                                                                        █
- * █    — Description of AlphaZero's Playing Style                                          █
- * █                                                                                        █
- * █    v32.0.0 PARADIGM-SHIFT FEATURES:                                                    █
- * █    ════════════════════════════════════════════════════════════════════════════════    █
- * █    ★ TRUE MCTS with UCB1 Tree Selection - Real Monte Carlo simulations                 █
- * █    ★ 40+ Move Strategic Web-Weaving - Deep prophylactic planning                       █
- * █    ★ Crisis Mode Detection - Emergency protocols when losing material                  █
- * █    ★ Piece Activity Urgency - NEVER allow passive pieces when behind                   █
- * █    ★ Counterplay Generation - Active threats when in worse positions                   █
- * █    ★ Delayed Gratification - Reward moves that pay off 20+ moves later                 █
- * █    ★ Flawless Endgame Technique - Opposition, zugzwang, triangulation                  █
- * █    ★ Zero Blunder System - Deep tactical verification 20+ moves ahead                  █
- * █    ★ Knights on Rim = GRIM - Severe piece placement penalties                          █
- * █    ★ King Safety Paramount - Enhanced exposed king evaluation                          █
- * █                                                                                        █
  * █    "AlphaZero had a dynamic, open style... it could crush Stockfish                    █
  * █     with flawless endgame play, perfect positional judgment, and an                    █
  * █     uncanny ability to weave long-term strategic webs."                                █
@@ -41,24 +25,6 @@
  * ██████████████████████████████████████████████████████████████████████████████████████████
  * 
  * ═══════════════════════════════════════════════════════════════════════════════════════════
- * 
- * GAME ANALYSIS: White (AlphaZero) vs Black (Lichess AI Level 8) - LOSS ANALYZED
- * ─────────────────────────────────────────────────────────────────────────────────────────
- * 
- * Critical failures identified in v31:
- * 1. Move 22: b3 - Passive pawn when consolidation needed
- * 2. Move 23: h3 - Another passive pawn while under attack
- * 3. Move 28: Nh1 - Knight to WORST square on board
- * 4. Move 30: Ne2 - Second knight to terrible square
- * 5. Complete endgame collapse with exposed king
- * 
- * v32.0.0 FIXES:
- * - Crisis Mode: When losing material, switch to ACTIVE defense
- * - Piece Activity: NEVER allow rim pieces (a/h files) or back rank pieces when behind
- * - Counterplay: Generate threats instead of passive defense
- * - Endgame: Activate king, push passed pawns, restrict opponent king
- * - Strategic Web: 40+ move planning with genuine tree search
- *
  * TARGET: Crush Stockfish through SUPERHUMAN STRATEGY and ZERO BLUNDERS!
  * ═══════════════════════════════════════════════════════════════════════════════════════════
  */
