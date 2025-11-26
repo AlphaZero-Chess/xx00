@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Lichess Bot - SUPREME ALPHAZERO v31.0.0
+// @name         Lichess Bot - SUPREME ALPHAZERO
 // @description  TRUE AlphaZero Replica - ABSOLUTE ZERO BLUNDERS - 60+ Move Strategic Webs - Perfect Tactical Vision - Crushes Stockfish
 // @author       AlphaZero Supreme Edition
-// @version      v31.0.0-ZERO-BLUNDER-SUPREME
+// @version      ZERO-BLUNDER-SUPREME
 // @match         *://lichess.org/*
 // @run-at        document-idle
 // @grant         none
@@ -11,17 +11,10 @@
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * SUPREME ALPHAZERO v31.0.0 — "THE ZERO-BLUNDER PARADIGM-SHIFTER"
+ * SUPREME ALPHAZERO — "THE ZERO-BLUNDER PARADIGM-SHIFTER"
  * ═══════════════════════════════════════════════════════════════════════════
  * 
  * ████████████████████████████████████████████████████████████████████████████
- * █                                                                          █
- * █    v31.0.0 CRITICAL FIX: ABSOLUTE ZERO BLUNDERS                         █
- * █    - Pre-calculation critical piece safety scan                          █
- * █    - Forced defensive mode when Queen/Rook attacked                      █
- * █    - 1-ply tactical horizon enforcement                                  █
- * █    - Deep threat detection on opponent moves                             █
- * █    - Knight attack pattern recognition (fixes Nxd1 blunder)              █
  * █                                                                          █
  * █    "A level that felt almost alien, with moves that prioritized          █
  * █     deep understanding over brute-force calculation."                    █
