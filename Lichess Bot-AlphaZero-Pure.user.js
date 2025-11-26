@@ -2201,6 +2201,33 @@ function evaluateEndgamePieceActivityV32(fen, move, board, activeColor) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
+// v30.0.0: Comprehensive Tactical Scan - Checks ALL tactical patterns
+// ═══════════════════════════════════════════════════════════════════════
+function comprehensiveTacticalScan(fen, move) {
+    const result = {
+        safe: true,
+        totalDanger: 0,
+        forks: [],
+        pins: [],
+        discoveredAttacks: [],
+        skewers: [],
+        threats: []
+    };
+    
+    try {
+        // Parse FEN to get board state and active color
+        const board = fenToBoard(fen);
+        const activeColor = fen.split(' ')[1] || 'w';
+        
+        // 1. HANGING PIECES CHECK
+        const hangingCheck = detectAllHangingPieces(fen, move, board, activeColor);
+        if (hangingCheck.hanging.length > 0) {
+            result.safe = false;
+            result.totalDanger += hangingCheck.danger;
+            result.threats.push({ type: 'hanging', danger: hangingCheck.danger, pieces: hangingCheck.hanging });
+            debugLog("[TACTICAL_SCAN]", `🚨 HANGING PIECES: ${hangingCheck.hanging.join(', ')}`);
+        }
+        
         // 2. FORK DETECTION
         const forkCheck = detectAllForks(fen, move, board, activeColor);
         result.forks = forkCheck.forks;
@@ -3587,21 +3614,6 @@ function evaluateWebWeavingPotential(board, activeColor) {
     webScore = defendingPairs * 10;
     
     return webScore;
-}
-        
-        // Weighted combination: average score, win rate, strategic wins, and exploration
-        const mctsScore = avgScore * 0.5 + 
-                          (winRate * 600) * 0.25 + 
-                          (strategicWinRate * 400) * 0.15 +
-                          (explorationBonus * 30) * 0.1;
-        
-        debugLog("[MCTS_v30]", `🎯 Move ${candidateMove}: visits=${visits}, wins=${wins}, stratWins=${strategicWins}, avgScore=${avgScore.toFixed(1)}, winRate=${(winRate*100).toFixed(1)}%, final=${mctsScore.toFixed(1)}`);
-        
-        return mctsScore;
-    } catch (e) {
-        debugLog("[MCTS_v30]", `⚠️ Error: ${e.message}`);
-        return 0;
-    }
 }
 
 /**
@@ -8410,7 +8422,7 @@ let evaluationHistory = [];      // Track evaluation over time
 let lastOpponentMove = null;     // Track opponent's last move
 let positionIsTactical = false;  // Flag for tactical positions
 let positionIsCritical = false;  // Flag for critical positions
-let lastEvaluation = 0;          // Last position evaluation
+// Note: lastEvaluation is already declared above in crisis state tracking
 
 // NEW v7.0.0: Enhanced evaluation tracking
 let evaluationTrend = 0;         // Positive = improving, Negative = declining
