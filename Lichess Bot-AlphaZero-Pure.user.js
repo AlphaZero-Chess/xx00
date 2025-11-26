@@ -531,127 +531,257 @@ const CONFIG = {
     // v38: MASTER SWITCH - Enable all v38 enhancements
     v38Enabled: true,
     
-    // v38: TRUE PERSISTENT MCTS — AlphaZero's Core Architecture
+    // v38: TRUE PERSISTENT MCTS — AlphaZero's Core Architecture (PARADIGM SHIFT)
     // Reuse tree across searches, proper PUCT selection, deep backpropagation
     v38PersistentMCTS: true,                 // Reuse MCTS tree across moves
-    v38MCTSSimulations: 2000,                // Massive simulation count (1000→2000)
-    v38MCTSDepth: 250,                       // Maximum tree depth (200→250)
-    v38PUCTConstant: 2.85,                   // PUCT exploration (paper uses 2.5-3.0)
+    v38MCTSSimulations: 5000,                // Massive simulation count (2000→5000) — DEEPER SEARCH
+    v38MCTSDepth: 400,                       // Maximum tree depth (250→400) — ALIEN DEPTH
+    v38PUCTConstant: 2.5,                   // PUCT exploration (paper optimal) — PERFECT BALANCE
     v38DirichletAlpha: 0.3,                  // Dirichlet noise alpha (AlphaZero paper)
     v38DirichletEpsilon: 0.25,               // Noise weight at root
-    v38BackpropDecay: 0.995,                 // Value decay during backprop
-    v38MinVisitsExpand: 2,                   // Min visits before expansion
-    v38VirtualLoss: 3,                       // Virtual loss for exploration diversity
-    v38TreeReuseFraction: 0.8,               // Fraction of tree to reuse
+    v38BackpropDecay: 0.998,                 // Value decay during backprop (0.995→0.998) — LONGER MEMORY
+    v38MinVisitsExpand: 1,                   // Min visits before expansion (2→1) — FASTER EXPANSION
+    v38VirtualLoss: 2,                       // Virtual loss for exploration diversity (3→2) — MORE BALANCED
+    v38TreeReuseFraction: 0.9,               // Fraction of tree to reuse (0.8→0.9) — PRESERVE KNOWLEDGE
+    v38MCTSRolloutPolicy: 'strategic',       // Rollout policy type (NEW) — INTELLIGENT ROLLOUTS
+    v38MCTSRolloutDepth: 80,                 // Depth per rollout (NEW) — DEEP ROLLOUTS
+    v38MCTSSelectPolicy: 'puct_enhanced',    // Selection policy (NEW) — ENHANCED PUCT
+    v38MCTSValueNetwork: 'holistic',         // Value evaluation approach (NEW) — FULL POSITION
+    v38MCTSPolicyNetwork: 'pattern_aware',   // Policy evaluation approach (NEW) — PATTERN MATCHING
+    v38ProgressiveWidening: true,            // Progressive widening (NEW) — SMARTER EXPANSION
+    v38ProgressiveWideningC: 1.5,            // Progressive widening constant (NEW)
+    v38ProgressiveWideningAlpha: 0.5,        // Progressive widening exponent (NEW)
     
     // v38: 50+ MOVE STRATEGIC HORIZON — "Alien Web-Weaving"
     // Plan spans 50+ moves, rewarding delayed gratification
-    v38StrategicHorizon: 80,                 // Plan 80+ moves ahead (60→80)
-    v38DelayedGratificationWeight: 3000,     // Bonus for future payoff (2000→3000)
-    v38WebWeavingDepth: 100,                 // Depth for web-weaving (80→100)
-    v38StrategicGoalWeight: 400.0,           // Weight for goals (300→400)
-    v38PositionalSqueeze: 2500,              // Squeeze bonus (1800→2500)
-    v38QuietStrengthening: 1800,             // Quiet strengthening (1200→1800)
-    v38LongTermPlanReward: 2000,             // Reward for consistent plans
-    v38StrategicConsistencyBonus: 1500,      // Bonus for sticking to plan
+    v38StrategicHorizon: 120,                 // Plan 120+ moves ahead (80→120) — TRUE ALIEN TIER
+    v38DelayedGratificationWeight: 5000,     // Bonus for future payoff (3000→5000) — PARADIGM SHIFT
+    v38WebWeavingDepth: 150,                 // Depth for web-weaving (100→150) — HUMAN INCOMPREHENSIBLE
+    v38StrategicGoalWeight: 600.0,           // Weight for goals (400→600) — ABSOLUTE PRIORITY
+    v38PositionalSqueeze: 4000,              // Squeeze bonus (2500→4000) — SUFFOCATING GRIP
+    v38QuietStrengthening: 3000,             // Quiet strengthening (1800→3000) — SILENT POWER
+    v38LongTermPlanReward: 4000,             // Reward for consistent plans (2000→4000)
+    v38StrategicConsistencyBonus: 3000,      // Bonus for sticking to plan (1500→3000)
     v38MultiMoveCoordination: true,          // Coordinate moves across plan
+    v38StrategicThreadsMax: 8,               // Track 8 strategic threads simultaneously
+    v38PlanPersistenceDepth: 60,             // Moves to persist a plan before re-evaluating
+    v38StrategicPatience: 5000,              // Bonus for patient maneuvering (NEW)
+    v38PropagatingWeaknessTracker: true,     // Track how weaknesses spread (NEW)
+    v38SqueezeAcceleration: 1.5,             // Exponential squeeze bonus (NEW)
     
-    // v38: PERFECT POSITIONAL JUDGMENT — Holistic Evaluation
-    // Evaluates positions like AlphaZero - beyond material
-    v38MaterialWeight: 1.0,                  // Standard material
-    v38MobilityWeight: 0.25,                 // Mobility (0.15→0.25)
-    v38KingSafetyWeight: 0.35,               // King safety (0.25→0.35)
-    v38PawnStructureWeight: 0.30,            // Pawn structure (0.20→0.30)
-    v38SpaceControlWeight: 0.25,             // Space control (0.15→0.25)
-    v38PieceCoordinationWeight: 0.30,        // Coordination (0.20→0.30)
-    v38InitiativeWeight: 0.35,               // Initiative/tempo (0.25→0.35)
-    v38CenterControlWeight: 0.30,            // Center control (NEW)
-    v38WeakSquareWeight: 0.25,               // Weak squares (NEW)
+    // v38: PERFECT POSITIONAL JUDGMENT — Holistic Evaluation (TRANSCENDENT TIER)
+    // Evaluates positions like AlphaZero - beyond material — PARADIGM SHIFT
+    v38MaterialWeight: 0.85,                  // Material slightly de-emphasized — UNDERSTAND OVER CALCULATE
+    v38MobilityWeight: 0.45,                 // Mobility (0.25→0.45) — PIECE ACTIVITY PARAMOUNT
+    v38KingSafetyWeight: 0.55,               // King safety (0.35→0.55) — FORTRESS MENTALITY
+    v38PawnStructureWeight: 0.50,            // Pawn structure (0.30→0.50) — SKELETAL FOUNDATION
+    v38SpaceControlWeight: 0.45,             // Space control (0.25→0.45) — TERRITORIAL DOMINANCE
+    v38PieceCoordinationWeight: 0.50,        // Coordination (0.30→0.50) — HARMONY IS STRENGTH
+    v38InitiativeWeight: 0.55,               // Initiative/tempo (0.35→0.55) — TEMPO IS GOLD
+    v38CenterControlWeight: 0.50,            // Center control (0.30→0.50) — CLASSICAL MASTERY
+    v38WeakSquareWeight: 0.45,               // Weak squares (0.25→0.45) — EXPLOITATION FOCUS
+    v38ProphylaxisWeight: 0.40,              // Prophylaxis (NEW) — PREVENT OPPONENT PLANS
+    v38PieceHarmonyWeight: 0.45,             // Piece harmony (NEW) — SYMPHONIC COORDINATION
+    v38StrategicTensionWeight: 0.35,         // Maintain/release tension wisely (NEW)
+    v38OutpostDominanceWeight: 0.40,         // Outpost importance (NEW)
+    v38DiagonalControlWeight: 0.35,          // Diagonal control for bishops (NEW)
+    v38FileControlWeight: 0.40,              // File control for rooks/queen (NEW)
     
-    // v38: ZERO BLUNDER SYSTEM — Multi-Pass 30+ Move Verification
-    // "Eliminate blunders by predicting outcomes 20+ moves deep"
-    v38TacticalHorizon: 50,                  // 50 plies for tactics (40→50)
-    v38BlunderThreshold: -30,                // Blunder = -30cp loss (-50→-30)
-    v38VerificationPasses: 5,                // 5 independent checks (3→5)
+    // v38: ZERO BLUNDER SYSTEM — Multi-Pass 30+ Move Verification (PERFECTION TIER)
+    // "Eliminate blunders by predicting outcomes 30+ moves deep" — ABSOLUTE ZERO OVERSIGHTS
+    v38TacticalHorizon: 80,                  // 80 plies for tactics (50→80) — DEEP HORIZON
+    v38BlunderThreshold: -15,                // Blunder = -15cp loss (-30→-15) — STRICTER STANDARD
+    v38VerificationPasses: 8,                // 8 independent checks (5→8) — REDUNDANT SAFETY
     v38DeepThreatScan: true,                 // Deep threat scanning
-    v38MatingNetHorizon: 40,                 // Mating net detection depth (30→40)
-    v38PromotionHorizon: 40,                 // Promotion threat depth (30→40)
+    v38MatingNetHorizon: 60,                 // Mating net detection depth (40→60) — SEE MATE COMING
+    v38PromotionHorizon: 60,                 // Promotion threat depth (40→60) — PAWN PROMOTION VISION
     v38TacticalRedundancy: true,             // Redundant tactical checks
     v38HangingPieceVerify: true,             // Verify no pieces left hanging
     v38DiscoveryThreatScan: true,            // Scan discovered attacks
     v38XRayThreatScan: true,                 // Scan x-ray attacks
+    v38PinSkewersHorizon: 40,                // Pin/skewer detection depth (NEW)
+    v38ForkHorizon: 40,                      // Fork detection depth (NEW)
+    v38BackRankMateHorizon: 50,              // Back rank mate detection (NEW)
+    v38InterferenceHorizon: 30,              // Piece interference issues (NEW)
+    v38OverloadedPieceHorizon: 35,           // Overloaded piece detection (NEW)
+    v38TrapHorizon: 40,                      // Trap detection (piece entrapment) (NEW)
+    v38ZwischenzugHorizon: 25,               // In-between move detection (NEW)
+    v38DesperadoHorizon: 30,                 // Desperado piece detection (NEW)
     
-    // v38: FLAWLESS ENDGAME TECHNIQUE — Tablebase-Level Perfection
-    // "Perfect endgame play, seamless transitions, perfect king safety"
+    // v38: FLAWLESS ENDGAME TECHNIQUE — Tablebase-Level ABSOLUTE Perfection
+    // "Perfect endgame play, seamless transitions, perfect king safety" — TABLEBASE INCARNATE
     v38EndgameEnabled: true,
-    v38EndgameOppositionDepth: 60,           // Opposition analysis (40→60)
-    v38EndgameTriangulationDepth: 50,        // Triangulation depth (30→50)
-    v38EndgameZugzwangDepth: 40,             // Zugzwang detection (30→40)
-    v38EndgameKingActivity: 3000,            // King activity bonus (2000→3000)
-    v38EndgamePassedPawnValue: 4000,         // Passed pawn bonus (3000→4000)
-    v38EndgameBlockadeValue: 3500,           // Blockade value (2500→3500)
-    v38EndgameKeySquareControl: 3000,        // Key square bonus (2000→3000)
-    v38EndgameCorrespondence: true,          // Corresponding squares
-    v38EndgameRuleOf: true,                  // Rule of the square
-    v38EndgamePawnRaceCalc: true,            // Calculate pawn races
-    v38EndgameWrongBishop: true,             // Wrong bishop detection
-    v38EndgameFortressRecog: true,           // Fortress recognition
+    v38EndgameOppositionDepth: 100,           // Opposition analysis (60→100) — PERFECT OPPOSITION
+    v38EndgameTriangulationDepth: 80,        // Triangulation depth (50→80) — MASTER TRIANGULATION
+    v38EndgameZugzwangDepth: 70,             // Zugzwang detection (40→70) — FORCE ZUGZWANG
+    v38EndgameKingActivity: 5000,            // King activity bonus (3000→5000) — KING IS A FIGHTING PIECE
+    v38EndgamePassedPawnValue: 6000,         // Passed pawn bonus (4000→6000) — PASSED PAWN = VICTORY
+    v38EndgameBlockadeValue: 5500,           // Blockade value (3500→5500) — STOP THEIR PAWNS
+    v38EndgameKeySquareControl: 5000,        // Key square bonus (3000→5000) — CRITICAL SQUARES
+    v38EndgameCorrespondence: true,          // Corresponding squares — MASTER TECHNIQUE
+    v38EndgameRuleOf: true,                  // Rule of the square — CALCULATE PERFECTLY
+    v38EndgamePawnRaceCalc: true,            // Calculate pawn races — RACE PRECISION
+    v38EndgameWrongBishop: true,             // Wrong bishop detection — AVOID TRAPS
+    v38EndgameFortressRecog: true,           // Fortress recognition — KNOW WHEN TO DRAW
+    v38EndgameDistantOpposition: 3000,       // Distant opposition bonus (NEW)
+    v38EndgameVirtualOpposition: 2500,       // Virtual opposition concept (NEW)
+    v38EndgameDiagonalOpposition: 2800,      // Diagonal opposition bonus (NEW)
+    v38EndgameOutflanking: 3500,             // Outflanking technique (NEW)
+    v38EndgameShouldering: 3000,             // Shouldering technique (NEW)
+    v38EndgameReserveTempoBonus: 4000,       // Reserve tempo in endgame (NEW)
+    v38EndgameStaleMateTrap: true,           // Avoid/set stalemate traps (NEW)
+    v38EndgamePhilidor: true,                // Philidor position recognition (NEW)
+    v38EndgameLucena: true,                  // Lucena position recognition (NEW)
+    v38EndgameVannutBonus: 2500,             // Vannut's position handling (NEW)
     
-    // v38: UNCANNY WEB-WEAVING — Multi-Front Strategic Pressure
-    // "Weave strategic webs that humans can barely comprehend"
+    // v38: UNCANNY WEB-WEAVING — Multi-Front Strategic Pressure (ALIEN TIER)
+    // "Weave strategic webs that humans can barely comprehend" — INHUMAN STRATEGY
     v38WebWeavingEnabled: true,
-    v38MultiFrontPressure: 2500,             // Multi-front attack bonus (NEW)
-    v38StrategicThreads: 5,                  // Track 5 strategic threads
-    v38PressureBuildupBonus: 1500,           // Bonus for building pressure
-    v38CoordinatedThreatBonus: 2000,         // Multiple coordinated threats
-    v38SqueezePatternBonus: 1800,            // Gradual position squeeze
-    v38PropagatingWeakness: 1200,            // Exploit spreading weaknesses
-    v38DominationBonus: 2500,                // Complete position domination
+    v38MultiFrontPressure: 5000,             // Multi-front attack bonus (2500→5000) — OVERWHELMING
+    v38StrategicThreads: 8,                  // Track 8 strategic threads (5→8) — MORE COMPLEXITY
+    v38PressureBuildupBonus: 3000,           // Bonus for building pressure (1500→3000) — GRADUAL DOOM
+    v38CoordinatedThreatBonus: 4000,         // Multiple coordinated threats (2000→4000) — SYNERGY
+    v38SqueezePatternBonus: 3500,            // Gradual position squeeze (1800→3500) — SUFFOCATION
+    v38PropagatingWeakness: 2500,            // Exploit spreading weaknesses (1200→2500) — INFECTION
+    v38DominationBonus: 5000,                // Complete position domination (2500→5000) — TOTAL CONTROL
+    v38StrategicAsphyxiation: 4500,          // Cut off opponent's plans (NEW) — NO ESCAPE
+    v38CrossfireBonus: 3500,                 // Multiple pieces attacking same target (NEW)
+    v38DiagonalWebBonus: 3000,               // Diagonal pressure patterns (NEW)
+    v38RankWebBonus: 3000,                   // Rank pressure patterns (NEW)
+    v38FileWebBonus: 3200,                   // File pressure patterns (NEW)
+    v38CornerPressureBonus: 2800,            // Corner pressure (king pushed to corner) (NEW)
+    v38CentralAsphyxiation: 3500,            // Central domination squeeze (NEW)
+    v38QueensideWebBonus: 2800,              // Queenside web-weaving (NEW)
+    v38KingsideWebBonus: 3000,               // Kingside web-weaving (NEW)
     
-    // v38: ALIEN PATTERN RECOGNITION — Deep Positional Understanding
-    // "Deep understanding over brute-force calculation"
+    // v38: ALIEN PATTERN RECOGNITION — Deep Positional Understanding (TRANSCENDENT)
+    // "Deep understanding over brute-force calculation" — NEURAL PATTERN MASTERY
     v38PatternEnabled: true,
-    v38OutpostValue: 1200,                   // Outpost bonus (800→1200)
-    v38BatteryValue: 1500,                   // Battery bonus (1000→1500)
-    v38FianchettoValue: 600,                 // Fianchetto bonus (400→600)
-    v38OpenFileValue: 900,                   // Open file bonus (600→900)
-    v38SeventhRankValue: 1200,               // 7th rank bonus (800→1200)
-    v38ConnectedRooksValue: 800,             // Connected rooks (500→800)
-    v38LongDiagonalValue: 800,               // Long diagonal (500→800)
-    v38WeakColorComplexValue: 1000,          // Weak color complex (NEW)
-    v38OverprotectionValue: 500,             // Overprotection (NEW - Nimzo concept)
-    v38RestrictedMobilityPenalty: -600,      // Mobility restriction (NEW)
+    v38OutpostValue: 2500,                   // Outpost bonus (1200→2500) — PERMANENT ANCHOR
+    v38BatteryValue: 3000,                   // Battery bonus (1500→3000) — COORDINATED POWER
+    v38FianchettoValue: 1200,                 // Fianchetto bonus (600→1200) — DRAGON BREATHING
+    v38OpenFileValue: 1800,                   // Open file bonus (900→1800) — HIGHWAY TO VICTORY
+    v38SeventhRankValue: 2500,               // 7th rank bonus (1200→2500) — INVASION COMPLETE
+    v38ConnectedRooksValue: 1600,             // Connected rooks (800→1600) — DOUBLING POWER
+    v38LongDiagonalValue: 1600,               // Long diagonal (800→1600) — SNIPER POSITION
+    v38WeakColorComplexValue: 2000,          // Weak color complex (1000→2000) — PERMANENT HOLE
+    v38OverprotectionValue: 1000,             // Overprotection (500→1000) — NIMZOWITSCH SPIRIT
+    v38RestrictedMobilityPenalty: -1200,      // Mobility restriction (-600→-1200) — SUFFOCATED PIECES
+    v38IsolatedPawnPenalty: -1500,            // Isolated pawn penalty (NEW) — STRUCTURAL WEAKNESS
+    v38BackwardPawnPenalty: -1200,            // Backward pawn penalty (NEW) — TARGET ACQUIRED
+    v38DoubledPawnPenalty: -1000,             // Doubled pawn penalty (NEW) — STATIC WEAKNESS
+    v38HangingPawnValue: -800,                // Hanging pawns (can be weak or strong) (NEW)
+    v38PawnIslandPenalty: -600,               // Penalty per pawn island (NEW)
+    v38RookOnSeventhPair: 4000,               // Both rooks on 7th rank (NEW) — DEVASTATING
+    v38MinorPieceOutpost: 2000,               // Minor piece on protected outpost (NEW)
+    v38BishopPairBonus: 800,                  // Bishop pair advantage (NEW)
+    v38BadBishopPenalty: -1000,               // Bad bishop (blocked by own pawns) (NEW)
+    v38KnightCentralization: 1500,            // Knight centralization bonus (NEW)
+    v38RookOpenFileBonus: 1500,               // Rook on open file (NEW)
+    v38RookSemiOpenFileBonus: 1000,           // Rook on semi-open file (NEW)
+    v38QueenBatteryBonus: 2500,               // Queen + bishop/rook battery (NEW)
+    v38KnightOutpostD5E5: 3000,               // Knight on d5/e5 (NEW) — CLASSICAL IDEAL
     
-    // v38: RESILIENCE & COUNTERPLAY — Never Give Up
-    // "Build resilience, ensuring no tactical oversights"
+    // v38: RESILIENCE & COUNTERPLAY — Never Give Up (IMMORTAL SPIRIT)
+    // "Build resilience, ensuring no tactical oversights" — FIGHT TO THE LAST
     v38ResilienceEnabled: true,
-    v38CounterplayPriority: 5000,            // Counterplay when behind (4000→5000)
-    v38ResilienceBonus: 2500,                // Resilient defense (1500→2500)
-    v38ActiveDefenseMultiplier: 3.0,         // Active defense (2.0→3.0)
-    v38FortressBonus: 3000,                  // Fortress construction (NEW)
-    v38SwindleAwareness: true,               // Look for swindles when behind
-    v38DesperationCounterplay: true,         // Generate complications
-    v38DrawingResourceScan: true,            // Scan for drawing resources
-    v38TrickyDefenseBonus: 1500,             // Bonus for tricky defense
+    v38CounterplayPriority: 8000,            // Counterplay when behind (5000→8000) — MAXIMUM URGENCY
+    v38ResilienceBonus: 4000,                // Resilient defense (2500→4000) — IRONCLAD DEFENSE
+    v38ActiveDefenseMultiplier: 4.0,         // Active defense (3.0→4.0) — DYNAMIC DEFENSE
+    v38FortressBonus: 5000,                  // Fortress construction (3000→5000) — IMPREGNABLE
+    v38SwindleAwareness: true,               // Look for swindles when behind — NEVER GIVE UP
+    v38DesperationCounterplay: true,         // Generate complications — CREATE CHAOS
+    v38DrawingResourceScan: true,            // Scan for drawing resources — FIND SALVATION
+    v38TrickyDefenseBonus: 3000,             // Bonus for tricky defense (1500→3000) — PRACTICAL CHANCES
+    v38StaleMateTrapBonus: 2500,             // Bonus for stalemate swindle setup (NEW)
+    v38PerpetualCheckScan: true,             // Scan for perpetual check (NEW)
+    v38FortressPatternRecognition: true,     // Recognize fortress positions (NEW)
+    v38CounterAttackPreference: 3500,        // Prefer counterattack over passive defense (NEW)
+    v38ResourcefulnessBonus: 2000,           // Bonus for finding resources (NEW)
+    v38ComplicationCreation: 2500,           // Creating complexity when behind (NEW)
+    v38PracticalChancesWeight: 3000,         // Maximize practical winning chances (NEW)
     
-    // v38: INITIATIVE & TEMPO MASTERY
-    // "Initiative is everything in AlphaZero's play"
-    v38InitiativeValue: 350,                 // Tempo value (200→350)
-    v38TempoLossThreshold: -75,              // Tempo loss warning (-100→-75)
-    v38TempoGainBonus: 250,                  // Tempo gain bonus (150→250)
-    v38DevelopmentUrgency: 3.0,              // Development urgency (2.0→3.0)
-    v38InitiativeChainBonus: 1200,           // Consecutive initiative moves
-    v38ForcingMovePreference: 800,           // Preference for forcing moves
-    v38ProactiveMoveBonus: 600,              // Proactive vs reactive
+    // v38: INITIATIVE & TEMPO MASTERY (ABSOLUTE DOMINANCE)
+    // "Initiative is everything in AlphaZero's play" — TEMPO IS LIFE
+    v38InitiativeValue: 600,                 // Tempo value (350→600) — MASSIVE TEMPO WEIGHT
+    v38TempoLossThreshold: -50,              // Tempo loss warning (-75→-50) — STRICTER
+    v38TempoGainBonus: 450,                  // Tempo gain bonus (250→450) — REWARD TEMPO
+    v38DevelopmentUrgency: 4.5,              // Development urgency (3.0→4.5) — RAPID DEPLOYMENT
+    v38InitiativeChainBonus: 2500,           // Consecutive initiative moves (1200→2500) — MOMENTUM
+    v38ForcingMovePreference: 1500,          // Preference for forcing moves (800→1500) — FORCE ISSUES
+    v38ProactiveMoveBonus: 1200,             // Proactive vs reactive (600→1200) — DICTATE PLAY
+    v38TempoInvestmentHorizon: 30,           // Moves to recoup tempo investment (NEW)
+    v38InitiativeMaintenanceBonus: 1800,     // Keeping initiative over multiple moves (NEW)
+    v38AttackMomentumBonus: 2000,            // Momentum in attack (NEW)
+    v38DevelopmentLeadBonus: 1500,           // Bonus per undeveloped enemy piece (NEW)
+    v38CastlingTempoValue: 800,              // Castling preserves tempo (NEW)
+    v38WastedMovesPenalty: -1500,            // Penalty for tempo-wasting moves (NEW)
+    v38DoubleMovePenalty: -1200,             // Moving same piece twice early (NEW)
+    v38QueenEarlyDevelopmentPenalty: -1000,  // Queen out too early (NEW)
     
-    // v38: PREDICTIVE OUTCOME MODELING — 30+ Move Simulation
-    // "Predict outcomes 20+ moves deep"
+    // v38: PREDICTIVE OUTCOME MODELING — 30+ Move Simulation (TRANSCENDENT)
+    // "Predict outcomes 30+ moves deep" — SEE THE FUTURE
     v38PredictiveEnabled: true,
-    v38OutcomeSimulationDepth: 40,           // Simulate 40 moves ahead
+    v38OutcomeSimulationDepth: 60,           // Simulate 60 moves ahead (40→60) — DEEPER VISION
     v38WinProbabilityTracking: true,         // Track win probability
     v38PositionTrajectory: true,             // Track position trajectory
     v38TrendAnalysis: true,                  // Analyze evaluation trends
     v38ConvergenceDetection: true,           // Detect converging positions
+    v38TrajectoryMemory: 50,                 // Positions to remember (NEW)
+    v38TrendConfidence: 0.8,                 // Confidence threshold for trends (NEW)
+    v38OutcomeCategories: 5,                 // Win/Draw/Loss + Crushing/Lost categories (NEW)
+    v38SimulationRollouts: 200,              // Rollouts per outcome simulation (NEW)
+    v38FutureThreatPrediction: true,         // Predict future threats (NEW)
+    v38PositionMomentum: true,               // Track position momentum (NEW)
+    v38CriticalMomentDetection: true,        // Detect critical moments (NEW)
+    
+    // ═══════════════════════════════════════════════════════════════════════
+    // v39.0.0: SUPERHUMAN BEAST ENHANCEMENTS — ABSOLUTE TRANSCENDENCE
+    // ═══════════════════════════════════════════════════════════════════════
+    // "A paradigm-shifter that crushes Stockfish with alien-tier understanding"
+    // ═══════════════════════════════════════════════════════════════════════
+    
+    // v39: NEURAL-NETWORK-LIKE PATTERN EVALUATION
+    v39NeuralPatternEnabled: true,           // Enable neural-like pattern matching
+    v39PatternDepth: 200,                    // Depth of pattern analysis
+    v39PatternCategories: [                  // Pattern categories to evaluate
+        'pawn_structure', 'piece_placement', 'king_safety', 
+        'attack_potential', 'defense_needs', 'endgame_transition',
+        'tactical_motifs', 'strategic_themes', 'piece_coordination'
+    ],
+    v39PatternWeight: 2500,                  // Weight for pattern matching
+    v39PatternMemory: 100,                   // Patterns to remember per game
+    
+    // v39: DEEPER PAWN STRUCTURE ANALYSIS
+    v39PawnStructureDepth: 80,               // Deep pawn structure analysis
+    v39PawnChainBonus: 1500,                 // Pawn chain strength
+    v39PawnTensionValue: 800,                // Value of maintaining tension
+    v39PawnBreakBonus: 2000,                 // Bonus for pawn breaks
+    v39PawnMajorityBonus: 1800,              // Queenside/kingside pawn majority
+    v39PawnStormsBonus: 2500,                // Pawn storm patterns
+    v39PawnStructurePhases: true,            // Track structure changes over game phases
+    
+    // v39: SPACE AND CONTROL DOMINANCE
+    v39SpaceAdvantageMultiplier: 2.5,        // Space advantage importance
+    v39CentralControlBonus: 2000,            // Central control bonus
+    v39ExpandingSpaceBonus: 1500,            // Bonus for expanding space
+    v39SpaceRestrictionPenalty: -2000,       // Penalty for restricted space
+    v39TerritorialDominanceBonus: 3000,      // Complete territorial control
+    
+    // v39: 30+ MOVE DEEP BLUNDER PREVENTION
+    v39DeepBlunderHorizon: 40,               // 40-move blunder horizon
+    v39TacticalVerificationPasses: 10,       // 10 verification passes
+    v39StrategicBlunderScan: true,           // Scan for strategic blunders
+    v39PositionalBlunderScan: true,          // Scan for positional blunders
+    v39EndgameBlunderScan: true,             // Scan for endgame mistakes
+    v39TransitionBlunderScan: true,          // Scan for phase transition errors
+    
+    // v39: DELAYED GRATIFICATION MASTERY
+    v39DelayedPayoffHorizon: 50,             // Look 50 moves for delayed payoff
+    v39QuietMoveAppreciation: 3000,          // Value quiet improving moves
+    v39LongTermInvestment: 4000,             // Value long-term positional gains
+    v39PatientManeuveringBonus: 3500,        // Reward patient play
+    v39StrategicPatience: 2500,              // Value strategic patience
 };
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -992,19 +1122,34 @@ function gaussianRandom() {
     return u * Math.sqrt(-2 * Math.log(s) / s);
 }
 
-// v38: Global persistent MCTS tree
+// v39: Global persistent MCTS tree with ENHANCED tracking
 let v38MCTSRoot = null;
 let v38LastPosition = null;
 let v38StrategicPlan = {
     threads: [],           // Active strategic threads
-    pressure: {},          // Pressure on different areas
-    goals: [],             // Current strategic goals
-    trajectory: [],        // Position trajectory
+    pressure: {},          // Pressure on different areas (queenside, kingside, center)
+    goals: [],             // Current strategic goals (50+ move horizon)
+    trajectory: [],        // Position trajectory tracking
     initiativeChain: 0,    // Consecutive initiative moves
+    pawnStructureGoal: null, // Target pawn structure (minority attack, pawn storm, etc.)
+    pieceCoordinationPlan: [], // Pieces that need to coordinate
+    weaknessesToExploit: [],   // Target weaknesses in opponent position
+    prophylacticNeeds: [],     // Opponent threats to neutralize
+    longTermSqueezeTargets: [], // Squares/areas to slowly dominate
+    webWeavingPhase: 0,         // Current phase of web-weaving (0-5)
+    delayedGratificationMoves: [], // Moves that will pay off in 30+ moves
+    endgameTransitionPlan: null,   // Plan for transition to endgame
+    spaceAdvantageDirection: null, // Direction of space expansion
+    keySquaresToControl: [],       // Critical squares in current position
+    tempoBalance: 0,               // Running tempo balance
+    sacrificeQueuedForFuture: null, // Positional sacrifice being prepared
 };
 
-// v38: Win probability estimation
+// v39: Enhanced win probability and outcome prediction
 let v38WinProbHistory = [];
+let v39PositionEvalHistory = [];  // Track position eval over time
+let v39OutcomeSimulations = [];   // Predicted outcomes from simulations
+let v39MoveQualityScores = new Map(); // Quality assessment per move
 
 /**
  * v38.0.0: SUPERHUMAN BEAST MCTS — True AlphaZero Architecture
@@ -2665,7 +2810,6 @@ function v38InitiativeAndTempo(fen, move, board, activeColor) {
         return 0;
     }
 }
-};
 
 /**
  * v31.0.0 CRITICAL: Pre-calculation safety scan
