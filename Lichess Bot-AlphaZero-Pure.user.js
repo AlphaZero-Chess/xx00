@@ -71,254 +71,303 @@ function debugLog(prefix, ...args) {
 // ═══════════════════════════════════════════════════════════════════════
 
 const CONFIG = {
-    // v35.0.0: ALIEN INTELLIGENCE - TRUE ALPHAZERO GOD-TIER REPLICA
+    // v36.0.0: PARADIGM-SHIFT ALPHAZERO — TRUE ALIEN SUPERINTELLIGENCE
     // ═══════════════════════════════════════════════════════════════════════
-    // "A level that felt almost alien, with moves that prioritized deep understanding"
-    // "Uncanny web-weaving ability - weaves long-term strategic webs humans can't comprehend"
-    // GAME ANALYSIS FIX: Nh1, Ne2, b3, h3 ABSOLUTE ELIMINATION - NOT PENALTY, ELIMINATION!
-    // GOAL: Crush Stockfish through SUPERHUMAN STRATEGY and ABSOLUTE ZERO BLUNDERS!
+    // GAME ANALYSIS: AlphaZero vs Lichess AI Level 8 - Sicilian Defense
+    // CRITICAL FAILURES IDENTIFIED:
+    // 1. ENDGAME COLLAPSE: Failed to see a-pawn promotion threat 10+ moves ahead
+    // 2. PASSIVE PLAY: Qa2, Kg1, g3, Rb1 - NO COUNTERPLAY generated
+    // 3. POSITIONAL BLINDNESS: Allowed Black's strategic squeeze without resistance  
+    // 4. MATING NET BLINDNESS: Ra2+, Bd1# was completely missed
+    // 
+    // v36 MISSION: "Moves that prioritize deep understanding over brute-force"
+    // "Weave long-term strategic webs that humans can barely comprehend"
+    // "Flawless endgame play, perfect positional judgment, ZERO blunders"
     // ═══════════════════════════════════════════════════════════════════════
-    thinkingTimeMin: 240000,        // v35: 240 seconds minimum (MORE STRATEGIC DEPTH)
-    thinkingTimeMax: 900000,        // v35: 900 seconds maximum (15 MINUTES for critical!)
+    thinkingTimeMin: 300000,        // v36: 300 seconds (5 min) for DEEP strategic analysis
+    thinkingTimeMax: 1200000,       // v36: 1200 seconds (20 min) for critical positions!
     premoveTime: 500,
     humanMistakeRate: 0.0,          // 0% (ABSOLUTE ZERO MISTAKES)
     
-    // v35.0.0: ALIEN-TIER search depth - BEYOND COMPREHENSION
-    baseDepth: 96,                  // v35: Base depth - ALIEN TIER (88→96)
-    strategicDepth: 108,            // v35: Strategic positions - INCOMPREHENSIBLE WEB-WEAVING (96→108)
-    endgameDepth: 120,              // v35: Endgame - MATHEMATICALLY PERFECT (104→120)
-    openingDepth: 88,               // v35: Opening - PERFECT THEORY MASTERY (80→88)
-    classicalDepth: 112,            // v35: Classical - GOD-TIER POWER (100→112)
-    winningDepth: 104,              // v35: Winning - CRUSHING ABSOLUTE CONVERSION (92→104)
-    tacticalDepth: 110,             // v35: Tactical - SUPERHUMAN PRECISION (98→110)
-    criticalDepth: 120,             // v35: Critical - MAXIMUM POSSIBLE POWER (108→120)
-    crisisDepth: 128,               // v35: Crisis mode - EMERGENCY OVERDRIVE (112→128)
+    // v36.0.0: TRANSCENDENT search depth - TRUE ALIEN-TIER
+    baseDepth: 120,                 // v36: Base depth - TRANSCENDENT (96→120)
+    strategicDepth: 140,            // v36: Strategic - 140 PLY WEB-WEAVING (108→140)
+    endgameDepth: 160,              // v36: Endgame - TABLEBASE-LEVEL PERFECTION (120→160)
+    openingDepth: 100,              // v36: Opening - ENCYCLOPEDIC MASTERY (88→100)
+    classicalDepth: 150,            // v36: Classical - IMMORTAL GAME QUALITY (112→150)
+    winningDepth: 130,              // v36: Winning - MERCILESS CONVERSION (104→130)
+    tacticalDepth: 140,             // v36: Tactical - KASPAROV+FISCHER COMBINED (110→140)
+    criticalDepth: 160,             // v36: Critical - ABSOLUTE MAXIMUM POWER (120→160)
+    crisisDepth: 180,               // v36: Crisis - DESPERATE GENIUS MODE (128→180)
     
-    // v35.0.0: FORCING LINE DEPTH - 80+ MOVE TACTICAL HORIZON
-    forcingLineDepth: 80,           // v35: Depth for captures/checks (70→80)
-    backRankMateDepth: 70,          // v35: Back-rank patterns (60→70)
-    queenInfiltrationDepth: 65,     // v35: Queen invasion patterns (55→65)
-    passedPawnThreatDepth: 75,      // v35: Passed pawn calculation (65→75)
-    delayedGratificationDepth: 60,  // v35: Moves that pay off later (50→60)
+    // v36.0.0: FORCING LINE DEPTH - 100+ MOVE TACTICAL HORIZON
+    forcingLineDepth: 100,          // v36: Depth for captures/checks (80→100)
+    backRankMateDepth: 90,          // v36: Back-rank mate patterns (70→90)
+    queenInfiltrationDepth: 85,     // v36: Queen invasion patterns (65→85)
+    passedPawnThreatDepth: 100,     // v36: CRITICAL - passed pawn threats (75→100)
+    delayedGratificationDepth: 80,  // v36: Moves that pay off 40+ moves later (60→80)
     
-    // v35.0.0: Time management - ALIEN STRATEGIC CALCULATION
-    earlyGameSpeed: 2.8,            // v35: Maximum time in opening for theory (2.5→2.8)
-    middleGameSpeed: 5.0,           // v35: MAXIMUM time in middlegame for webs (4.5→5.0)
-    endGameSpeed: 4.5,              // v35: Extended endgame for perfect technique (4.0→4.5)
-    crisisSpeed: 6.0,               // v35: Even more time in crisis (5.0→6.0)
+    // v36.0.0: PASSED PAWN PROMOTION AWARENESS - GAME ANALYSIS FIX
+    // In the lost game, White didn't see a-pawn promotion until too late!
+    passedPawnPromotionDepth: 50,   // v36: NEW - Look 50 moves for pawn promotions
+    passedPawnBlockadeValue: 2000,  // v36: NEW - HUGE value for blockading passed pawns
+    advancedPassedPawnThreat: 3000, // v36: NEW - Advanced passed pawn = EMERGENCY
+    passedPawnRaceDepth: 60,        // v36: NEW - Calculate pawn races deeply
     
-    // v35.0.0: HOLISTIC POSITION EVALUATION - ALIEN UNDERSTANDING
-    positionWeight: 40.0,           // v35: ALIEN TIER (30.0→40.0)
-    initiativeBonus: 800,           // v35: MASSIVE - tempo is EVERYTHING (600→800)
-    pieceActivityBonus: 1000,       // v35: CRITICAL - active pieces WIN (700→1000)
-    controlBonus: 700,              // v35: HUGE - space control dominance (500→700)
-    mobilityWeight: 35.0,           // v35: MASSIVE - piece mobility (25.0→35.0)
-    coordinationWeight: 40.0,       // v35: CRITICAL - piece harmony (30.0→40.0)
-    developmentWeight: 45.0,        // v35: SEVERE punishment for undeveloped (35.0→45.0)
-    centerControlWeight: 50.0,      // v35: CRITICAL - central dominance (38.0→50.0)
+    // v36.0.0: Time management - ALIEN STRATEGIC CALCULATION
+    earlyGameSpeed: 3.5,            // v36: Extended opening time (2.8→3.5)
+    middleGameSpeed: 6.0,           // v36: MAXIMUM middlegame analysis (5.0→6.0)
+    endGameSpeed: 7.0,              // v36: EXTENDED endgame - CRITICAL FIX (4.5→7.0)
+    crisisSpeed: 8.0,               // v36: MAXIMUM crisis time (6.0→8.0)
     
-    // v35.0.0: ZERO CREATIVITY - Trust engine ABSOLUTELY
+    // v36.0.0: HOLISTIC POSITION EVALUATION - TRANSCENDENT UNDERSTANDING
+    positionWeight: 60.0,           // v36: TRANSCENDENT (40.0→60.0)
+    initiativeBonus: 1200,          // v36: MASSIVE - tempo is EVERYTHING (800→1200)
+    pieceActivityBonus: 1500,       // v36: CRITICAL - active pieces WIN (1000→1500)
+    controlBonus: 1000,             // v36: HUGE - space control dominance (700→1000)
+    mobilityWeight: 50.0,           // v36: MASSIVE - piece mobility (35.0→50.0)
+    coordinationWeight: 60.0,       // v36: CRITICAL - piece harmony (40.0→60.0)
+    developmentWeight: 70.0,        // v36: SEVERE undeveloped penalty (45.0→70.0)
+    centerControlWeight: 80.0,      // v36: CRITICAL - central dominance (50.0→80.0)
+    
+    // v36.0.0: ZERO CREATIVITY - Trust engine ABSOLUTELY
     sacrificeThreshold: 0.00,       // ZERO sacrifices - ONLY PROVEN WINS
     unconventionalRate: 0.00,       // 0% unconventional - ALWAYS BEST MOVE
     complexPositionBonus: 0.00,     // NO creativity bonus - PURE ENGINE
-    longTermFocus: 0.50,            // v35: 50% long-term focus (0.40→0.50) - WEB-WEAVING
+    longTermFocus: 0.80,            // v36: 80% long-term focus (0.50→0.80) - WEB-WEAVING PRIORITY
     eleganceThreshold: 0.00,        // ZERO elegant moves - ONLY BEST
     openingScoreDiffThreshold: 0,   // ABSOLUTE STRICT opening
-    pieceSafetyWeight: 40.0,        // v35: PARAMOUNT piece safety (30.0→40.0)
+    pieceSafetyWeight: 60.0,        // v36: PARAMOUNT piece safety (40.0→60.0)
     
-    // v35.0.0: Winning conversion - CRUSHING AND ABSOLUTE
-    winningThreshold: 60,           // v35: EARLIER winning detection (80→60)
+    // v36.0.0: Winning conversion - CRUSHING AND ABSOLUTE
+    winningThreshold: 40,           // v36: EARLIER winning detection (60→40)
     winningCreativity: 0.00,        // ZERO creativity when winning
     accelerationBonus: 0.00,        // ZERO bonus - ENGINE ONLY
     positionalSacrifice: 0.00,      // ABSOLUTE ZERO sacrifices when winning
     
-    // v35.0.0: TRUE ALPHAZERO - Absolute GOD-TIER perfection
+    // v36.0.0: TRUE ALPHAZERO - ABSOLUTE TRANSCENDENT perfection
     contempt: 0,                    // ZERO contempt
     riskTolerance: 0.00,            // ABSOLUTE ZERO risk tolerance
-    aggressivePlanning: 0.00,       // ZERO planning - PURE ENGINE
+    aggressivePlanning: 0.00,       // ZERO aggressive planning - PURE ENGINE
     
-    // v35.0.0: BACK-RANK MATE PREVENTION - ALIEN-TIER SETTINGS
+    // v36.0.0: BACK-RANK MATE PREVENTION - TRANSCENDENT SETTINGS
     backRankMateDetection: true,    // Enable back-rank mate detection
-    backRankMatePenalty: 20000,     // v35: ALIEN penalty (15000→20000)
-    trapppedKingPenalty: 5000,      // v35: HUGE penalty for trapped king (3000→5000)
-    openFileNearKingPenalty: 800,   // v35: Penalty for open file near king (600→800)
+    backRankMatePenalty: 30000,     // v36: TRANSCENDENT penalty (20000→30000)
+    trapppedKingPenalty: 8000,      // v36: HUGE penalty for trapped king (5000→8000)
+    openFileNearKingPenalty: 1200,  // v36: Penalty for open file near king (800→1200)
     
-    // v35.0.0: QUEEN INFILTRATION PREVENTION - ALIEN-TIER
-    queenInfiltrationPenalty: 1800, // v35: Penalty for queen invasion (1200→1800)
-    queenOnSecondRankPenalty: 2500, // v35: Enemy queen on 2nd/7th rank (1800→2500)
-    queenNearKingPenalty: 1500,     // v35: Enemy queen near our king (1000→1500)
-    queenToCriticalSquarePenalty: 2200, // v35: Qxc2 type infiltration (1500→2200)
+    // v36.0.0: QUEEN INFILTRATION PREVENTION - TRANSCENDENT
+    queenInfiltrationPenalty: 2500, // v36: Penalty for queen invasion (1800→2500)
+    queenOnSecondRankPenalty: 3500, // v36: Enemy queen on 2nd/7th rank (2500→3500)
+    queenNearKingPenalty: 2200,     // v36: Enemy queen near our king (1500→2200)
+    queenToCriticalSquarePenalty: 3000, // v36: Qxc2 type infiltration (2200→3000)
     
-    // v35.0.0: Tactical detection - ALIEN-TIER PERFECTION
-    tacticalThreshold: 0.9995,      // v35: MAXIMUM threshold (0.998→0.9995)
-    threatResponseDepth: 40,        // v35: MAXIMUM depth (30→40)
-    forcingMoveBonus: 600,          // v35: MAXIMUM bonus (400→600)
-    evaluationDropThreshold: 3,     // v35: INSTANT threshold (5→3)
-    criticalEvalThreshold: -15,     // v35: INSTANT threshold (-20→-15)
+    // v36.0.0: Tactical detection - TRANSCENDENT PERFECTION
+    tacticalThreshold: 0.9999,      // v36: MAXIMUM threshold (0.9995→0.9999)
+    threatResponseDepth: 60,        // v36: MAXIMUM depth (40→60)
+    forcingMoveBonus: 1000,         // v36: MAXIMUM bonus (600→1000)
+    evaluationDropThreshold: 2,     // v36: INSTANT threshold (3→2)
+    criticalEvalThreshold: -10,     // v36: INSTANT threshold (-15→-10)
     
-    // v35.0.0: Anti-draw and repetition - ABSOLUTE
-    repetitionPenalty: 600,         // v35: EXTREME penalty (400→600)
+    // v36.0.0: Anti-draw and repetition - ABSOLUTE
+    repetitionPenalty: 1000,        // v36: EXTREME penalty (600→1000)
     antiDrawBias: 1.00,             // ABSOLUTE bias against draws
-    repetitionHistoryDepth: 40,     // v35: Track more positions (30→40)
+    repetitionHistoryDepth: 60,     // v36: Track more positions (40→60)
     
-    // v35.0.0: DEFENSIVE MODE - ALIEN-TIER PERFECTION
-    defensiveThresholdMild: -10,    // v35: INSTANT (-15→-10)
-    defensiveThresholdSerious: -25, // v35: INSTANT (-30→-25)
-    defensiveThresholdCritical: -50, // v35: INSTANT (-60→-50)
+    // v36.0.0: DEFENSIVE MODE - TRANSCENDENT PERFECTION
+    defensiveThresholdMild: -5,     // v36: INSTANT (-10→-5)
+    defensiveThresholdSerious: -15, // v36: INSTANT (-25→-15)
+    defensiveThresholdCritical: -30, // v36: INSTANT (-50→-30)
     defensiveRiskTolerance: 0.00,   // ABSOLUTE ZERO
     defensiveCreativityMild: 0.00,  // ABSOLUTE ZERO
     defensiveCreativitySerious: 0.00, // ABSOLUTE ZERO
     defensiveCreativityCritical: 0.00, // ABSOLUTE ZERO
-    defensiveDepthBonus: 32,        // v35: MAXIMUM extra depth (+24→+32)
+    defensiveDepthBonus: 48,        // v36: MAXIMUM extra depth (+32→+48)
     
-    // v35.0.0: SACRIFICE VALIDATION SYSTEM (ALIEN-TIER STRICT)
-    sacrificeMinCompensation: 800,  // v35: Higher compensation required (600→800)
-    sacrificeValidationDepth: 50,   // v35: Deeper verification (40→50)
-    materialCrisisThreshold: -15,   // v35: Earlier crisis detection (-20→-15)
+    // v36.0.0: SACRIFICE VALIDATION SYSTEM (TRANSCENDENT STRICT)
+    sacrificeMinCompensation: 1200, // v36: Higher compensation required (800→1200)
+    sacrificeValidationDepth: 70,   // v36: Deeper verification (50→70)
+    materialCrisisThreshold: -10,   // v36: Earlier crisis detection (-15→-10)
     
-    // v35.0.0: COUNTERPLAY GENERATION - ABSOLUTE PRIORITY IN WORSE POSITIONS
-    // CRITICAL: When behind, FORCE threats - never play passive!
-    counterplayPriority: 2000,      // v35: MASSIVE bonus for threats when behind (1200→2000)
-    passivePlayPenalty: -5000,      // v35: EXTREME penalty for passive moves (-2000→-5000)
-    initiativePremiumWhenBehind: 12.0, // v35: ALIEN multiplier (8.0→12.0)
-    activeDefensePriority: 1500,    // v35: Bonus for active defense (1000→1500)
+    // v36.0.0: COUNTERPLAY GENERATION - ABSOLUTE PRIORITY IN WORSE POSITIONS
+    // CRITICAL: When behind, FORCE threats - GAME ANALYSIS: White played passive!
+    counterplayPriority: 3000,      // v36: MASSIVE bonus for threats (2000→3000)
+    passivePlayPenalty: -10000,     // v36: EXTREME penalty for passive moves (-5000→-10000)
+    initiativePremiumWhenBehind: 20.0, // v36: TRANSCENDENT multiplier (12.0→20.0)
+    activeDefensePriority: 2500,    // v36: Bonus for active defense (1500→2500)
     
-    // v35.0.0: QUEEN TRADE EVALUATION (ALIEN-TIER)
-    queenTradeWhenBehindPenalty: -2500, // v35: EXTREME penalty (-1500→-2500)
-    queenTradeWhenAheadBonus: 600,  // v35: Good bonus when ahead (400→600)
+    // v36.0.0: QUEEN TRADE EVALUATION (TRANSCENDENT)
+    queenTradeWhenBehindPenalty: -4000, // v36: EXTREME penalty (-2500→-4000)
+    queenTradeWhenAheadBonus: 1000, // v36: Good bonus when ahead (600→1000)
     
-    // v35.0.0: BISHOP PAIR PRESERVATION - ALIEN UNDERSTANDING
-    bishopPairValue: 450,           // v35: Higher value (300→450)
-    bishopTradeInClosedPenalty: -700, // v35: Stronger penalty (-500→-700)
+    // v36.0.0: BISHOP PAIR PRESERVATION - TRANSCENDENT UNDERSTANDING
+    bishopPairValue: 700,           // v36: Higher value (450→700)
+    bishopTradeInClosedPenalty: -1000, // v36: Stronger penalty (-700→-1000)
     
-    // v35.0.0: Passed pawn settings - CRITICAL FOR ENDGAME PERFECTION
+    // v36.0.0: Passed pawn settings - CRITICAL FOR ENDGAME PERFECTION
+    // GAME ANALYSIS: White FAILED to stop the a-pawn promotion!
     passedPawnDangerRank: 1,
-    passedPawnDepthBonus: 20,       // v35: Much higher (15→20)
+    passedPawnDepthBonus: 35,       // v36: Much higher (20→35)
+    enemyPassedPawnPenalty: -2500,  // v36: NEW - SEVERE penalty for enemy passed pawn
+    passedPawnOnSeventhBonus: 5000, // v36: NEW - Passed pawn on 7th = HUGE THREAT
+    passedPawnBlockadePriority: 3000, // v36: NEW - MUST blockade enemy passed pawns
     
-    // v35.0.0: ENHANCED POSITIONAL WEIGHTS - ALIEN ALPHAZERO
-    pawnStructureWeight: 80.0,      // v35: CRITICAL foundation (60.0→80.0)
-    kingSafetyWeight: 150.0,        // v35: PARAMOUNT PRIORITY (120.0→150.0)
-    weakSquareWeight: 65.0,         // v35: Strong exploitation (50.0→65.0)
-    passedPawnWeight: 80.0,         // v35: CRITICAL value (60.0→80.0)
-    pieceHarmonyWeight: 70.0,       // v35: Piece coordination (50.0→70.0)
-    spaceAdvantageWeight: 55.0,     // v35: Space control (40.0→55.0)
+    // v36.0.0: ENHANCED POSITIONAL WEIGHTS - TRANSCENDENT ALPHAZERO
+    pawnStructureWeight: 120.0,     // v36: CRITICAL foundation (80.0→120.0)
+    kingSafetyWeight: 200.0,        // v36: PARAMOUNT PRIORITY (150.0→200.0)
+    weakSquareWeight: 100.0,        // v36: Strong exploitation (65.0→100.0)
+    passedPawnWeight: 150.0,        // v36: CRITICAL value (80.0→150.0)
+    pieceHarmonyWeight: 100.0,      // v36: Piece coordination (70.0→100.0)
+    spaceAdvantageWeight: 80.0,     // v36: Space control (55.0→80.0)
     
-    // v35.0.0: SUPREME WEIGHTS - ALIEN PARADIGM
-    tempoWeight: 90.0,              // v35: TEMPO IS EVERYTHING (70.0→90.0)
-    developmentUrgency: 100.0,      // v35: SEVERE undeveloped penalty (80.0→100.0)
-    tacticalHorizon: 70,            // v35: 70 ply for forcing lines (60→70)
-    weakeningPawnPenalty: 1200,     // v35: g3/h3 near king DANGEROUS (800→1200)
-    consecutiveWastedMovesPenalty: 1000, // v35: b3→a3→a4 patterns (700→1000)
-    exchangeSacrificeCaution: 1500, // v35: Exchange sacs need BIG compensation (1000→1500)
+    // v36.0.0: SUPREME WEIGHTS - TRANSCENDENT PARADIGM
+    tempoWeight: 150.0,             // v36: TEMPO IS EVERYTHING (90.0→150.0)
+    developmentUrgency: 150.0,      // v36: SEVERE undeveloped penalty (100.0→150.0)
+    tacticalHorizon: 100,           // v36: 100 ply for forcing lines (70→100)
+    weakeningPawnPenalty: 2000,     // v36: g3/h3 near king DANGEROUS (1200→2000)
+    consecutiveWastedMovesPenalty: 1800, // v36: b3→a3→a4 patterns (1000→1800)
+    exchangeSacrificeCaution: 2500, // v36: Exchange sacs need BIG compensation (1500→2500)
     
-    // v35.0.0: 50+ MOVE STRATEGIC PLANNING - ALIEN WEB-WEAVING
-    longTermPlanningDepth: 60,      // v35: Realistic 60+ moves ahead (45→60)
-    rolloutSimulations: 60,         // v35: More simulations (40→60)
-    rolloutDepthPerSim: 40,         // v35: Deeper per simulation (30→40)
-    strategicWebWeight: 80.0,       // v35: Weight for strategic plans (60.0→80.0)
-    prophylaxisWeight: 70.0,        // v35: Preventing opponent plans (50.0→70.0)
+    // v36.0.0: 80+ MOVE STRATEGIC PLANNING - TRANSCENDENT WEB-WEAVING
+    longTermPlanningDepth: 100,     // v36: 100+ moves ahead (60→100)
+    rolloutSimulations: 120,        // v36: More simulations (60→120)
+    rolloutDepthPerSim: 80,         // v36: Deeper per simulation (40→80)
+    strategicWebWeight: 150.0,      // v36: Weight for strategic plans (80.0→150.0)
+    prophylaxisWeight: 120.0,       // v36: Preventing opponent plans (70.0→120.0)
     
-    // v35.0.0: TRUE MCTS with UCB1 SELECTION - ALIEN INTELLIGENCE
-    // GAME ANALYSIS: Previous MCTS was STILL too weak - NOW: TRUE ALIEN-TIER
-    // v35: TRIPLED simulations, 100+ move rollouts, MANDATORY threat generation
-    mctsSimulations: 500,           // v35: MASSIVE Monte Carlo simulations (300→500)
-    mctsDepthPerSim: 100,           // v35: ALIEN DEPTH per simulation (70→100)
-    mctsStrategicWeight: 150.0,     // v35: MCTS evaluation weight (100→150)
+    // v36.0.0: TRUE MCTS with UCB1 SELECTION - TRANSCENDENT INTELLIGENCE
+    // GAME ANALYSIS: Previous MCTS didn't see a-pawn promotion threat!
+    // v36: QUINTUPLE simulations, 150+ move rollouts, TRUE TREE SEARCH
+    mctsSimulations: 1000,          // v36: MASSIVE Monte Carlo simulations (500→1000)
+    mctsDepthPerSim: 150,           // v36: TRANSCENDENT DEPTH per simulation (100→150)
+    mctsStrategicWeight: 250.0,     // v36: MCTS evaluation weight (150→250)
     mctsUCB1Constant: 1.41421356,   // UCB1 exploration constant (exact sqrt(2))
-    mctsExpansionThreshold: 1,      // v35: Visits before expansion (2→1)
-    mctsTreeDepth: 80,              // v35: Maximum tree depth (60→80)
-    mctsRolloutDepth: 120,          // v35: Rollout simulation depth (80→120)
-    mctsStrategicRollouts: 120,     // v35: Strategic rollouts per move (80→120)
-    mctsPruningThreshold: -300,     // v35: Prune moves below this eval (-400→-300)
+    mctsExpansionThreshold: 1,      // v36: Visits before expansion (2→1)
+    mctsTreeDepth: 120,             // v36: Maximum tree depth (80→120)
+    mctsRolloutDepth: 180,          // v36: Rollout simulation depth (120→180)
+    mctsStrategicRollouts: 200,     // v36: Strategic rollouts per move (120→200)
+    mctsPruningThreshold: -200,     // v36: Prune moves below this eval (-300→-200)
     
-    // v35.0.0: PATTERN RECOGNITION - ALIEN INTELLIGENCE
-    discoveredAttackBonus: 3000,    // v35: MASSIVE reward for discoveries (2000→3000)
-    discoveredAttackPenalty: -5000, // v35: SEVERE penalty for missing (was -3000→-5000)
-    matingPatternDepth: 70,         // v35: Deep mating patterns (55→70)
+    // v36.0.0: TRUE TREE SEARCH PARAMETERS - REAL MCTS
+    mctsTreeEnabled: true,          // v36: NEW - Enable TRUE tree search
+    mctsBackpropagation: true,      // v36: NEW - Proper value backpropagation
+    mctsExplorationDecay: 0.95,     // v36: NEW - Exploration decay factor
+    mctsVirtualLoss: 1.0,           // v36: NEW - Virtual loss for parallel search
+    mctsProgressiveWidening: true,  // v36: NEW - Progressive widening
+    mctsRaveEnabled: true,          // v36: NEW - RAVE (Rapid Action Value Estimation)
+    mctsRaveWeight: 0.5,            // v36: NEW - RAVE weight factor
     
-    // v35.0.0: FORK AND PIN DETECTION - SUPERHUMAN
-    forkDetectionDepth: 60,         // v35: Deep fork detection (45→60)
-    pinDetectionWeight: 600,        // v35: Pin evaluation weight (400→600)
-    skewersDetectionWeight: 500,    // v35: Skewer detection weight (350→500)
-    xRayAttackWeight: 400,          // v35: X-ray attack evaluation (280→400)
+    // v36.0.0: PATTERN RECOGNITION - TRANSCENDENT INTELLIGENCE
+    discoveredAttackBonus: 5000,    // v36: MASSIVE reward for discoveries (3000→5000)
+    discoveredAttackPenalty: -8000, // v36: SEVERE penalty for missing (-5000→-8000)
+    matingPatternDepth: 100,        // v36: Deep mating patterns (70→100)
     
-    // v35.0.0: PIECE COORDINATION WEIGHTS - ALIEN HARMONY
-    pieceCoordinationBonus: 350,    // v35: Bonus for well-coordinated pieces (200→350)
-    hangingPiecePenalty: -2000,     // v35: Penalty for hanging pieces (-1200→-2000)
-    undefendedPiecePenalty: -800,   // v35: Penalty for undefended pieces (-500→-800)
+    // v36.0.0: MATING NET DETECTION - GAME ANALYSIS FIX
+    // In the lost game, White didn't see Ra2+, Bd1# mating net!
+    matingNetDepth: 60,             // v36: NEW - Depth for detecting mating nets
+    matingNetPenalty: -10000,       // v36: NEW - HUGE penalty for allowing mating nets
+    checkmateThreatDepth: 40,       // v36: NEW - Look 40 moves for mate threats
     
-    // v35.0.0: PIECE ACTIVITY - "KNIGHTS ON RIM ARE DEATH" - ABSOLUTE ELIMINATION!
+    // v36.0.0: FORK AND PIN DETECTION - SUPERHUMAN
+    forkDetectionDepth: 80,         // v36: Deep fork detection (60→80)
+    pinDetectionWeight: 1000,       // v36: Pin evaluation weight (600→1000)
+    skewersDetectionWeight: 800,    // v36: Skewer detection weight (500→800)
+    xRayAttackWeight: 700,          // v36: X-ray attack evaluation (400→700)
+    
+    // v36.0.0: PIECE COORDINATION WEIGHTS - TRANSCENDENT HARMONY
+    pieceCoordinationBonus: 600,    // v36: Bonus for well-coordinated pieces (350→600)
+    hangingPiecePenalty: -4000,     // v36: Penalty for hanging pieces (-2000→-4000)
+    undefendedPiecePenalty: -1500,  // v36: Penalty for undefended pieces (-800→-1500)
+    
+    // v36.0.0: PIECE ACTIVITY - "KNIGHTS ON RIM ARE DEATH" - INSTANT REJECTION
     // ═══════════════════════════════════════════════════════════════════════
     // THE Nh1, Ne2 DISASTER FIX - These moves DESTROYED us in the lost game!
-    // v35: NOT PENALTIES - ABSOLUTE ELIMINATION via -Infinity-level scores!
+    // v36: NOT PENALTIES - INSTANT HARD REJECTION with -Infinity-level scores!
     // The bot MUST NEVER play these moves under ANY circumstances!
     // ═══════════════════════════════════════════════════════════════════════
-    knightOnRimPenalty: -8000,      // v35: Knight on a/h file = ABSOLUTE ELIMINATION (-2500→-8000)
-    knightOnBackRankPenalty: -15000, // v35: Knight on 1st/8th rank = NUCLEAR ELIMINATION (-5000→-15000)
-    knightCornerPenalty: -30000,    // v35: Knight on a1/h1/a8/h8 = INSTANT DEATH (-10000→-30000)
-    knightSecondRankPenalty: -10000, // v35: NEW - Knight on 2nd/7th rank = DISASTER (Ne2 fix!)
-    bishopTrappedPenalty: -3000,    // v35: Bishop with limited mobility (-1200→-3000)
-    rookNotOnOpenFilePenalty: -400, // v35: Rook not on open/semi-open file (-250→-400)
-    pieceActivityWhenBehindMultiplier: 15.0, // v35: ALIEN amplify when losing (8.0→15.0)
-    passivePiecePenalty: -2500,     // v35: Any passive piece placement (-1000→-2500)
-    retreatingPiecePenalty: -2000,  // v35: Pieces moving backward without purpose (-800→-2000)
+    knightOnRimPenalty: -15000,     // v36: Knight on a/h file = INSTANT REJECTION (-8000→-15000)
+    knightOnBackRankPenalty: -25000, // v36: Knight on 1st/8th rank = ABSOLUTE REJECTION (-15000→-25000)
+    knightCornerPenalty: -50000,    // v36: Knight on a1/h1/a8/h8 = NUCLEAR REJECTION (-30000→-50000)
+    knightSecondRankPenalty: -18000, // v36: Knight on 2nd/7th rank = DISASTER (Ne2 fix!) (-10000→-18000)
+    bishopTrappedPenalty: -6000,    // v36: Bishop with limited mobility (-3000→-6000)
+    rookNotOnOpenFilePenalty: -800, // v36: Rook not on open/semi-open file (-400→-800)
+    pieceActivityWhenBehindMultiplier: 25.0, // v36: TRANSCENDENT amplify when losing (15.0→25.0)
+    passivePiecePenalty: -5000,     // v36: Any passive piece placement (-2500→-5000)
+    retreatingPiecePenalty: -4000,  // v36: Pieces moving backward without purpose (-2000→-4000)
     
-    // v35.0.0: CRISIS MODE - EMERGENCY PROTOCOL WITH ABSOLUTE HARD BLOCKS
+    // v36.0.0: CRISIS MODE - EMERGENCY PROTOCOL WITH ABSOLUTE HARD REJECTION
     // ═══════════════════════════════════════════════════════════════════════
-    // The bot COLLAPSED in the game because crisis mode didn't ELIMINATE passive moves!
-    // v35: ABSOLUTE ELIMINATION penalties - passive moves in crisis = INSTANT REJECT!
+    // GAME ANALYSIS: White collapsed with Qa2, Kg1, g3 - passive moves in losing position!
+    // v36: ABSOLUTE REJECTION of passive moves in crisis = NEVER ALLOW!
     // ═══════════════════════════════════════════════════════════════════════
     crisisModeEnabled: true,        // Enable crisis detection
-    crisisModeThreshold: -60,       // v35: Trigger crisis MUCH EARLIER (-80→-60)
-    crisisActiveDefenseBonus: 2500, // v35: Bonus for threats in crisis (1500→2500)
-    crisisPassivePenalty: -20000,   // v35: ABSOLUTE ELIMINATION for passive in crisis (-8000→-20000!)
+    crisisModeThreshold: -40,       // v36: Trigger crisis MUCH EARLIER (-60→-40)
+    crisisActiveDefenseBonus: 4000, // v36: Bonus for threats in crisis (2500→4000)
+    crisisPassivePenalty: -35000,   // v36: ABSOLUTE REJECTION for passive in crisis (-20000→-35000!)
     crisisForceActivity: true,      // Force piece activity in crisis
     crisisForceCounterplay: true,   // FORCE counterplay generation
     crisisBlockPassiveMoves: true,  // Completely BLOCK passive moves in crisis
-    crisisMinThreatScore: 300,      // v35: Minimum threat creation required (200→300)
-    crisisHardBlockEnabled: true,   // v35: Enable HARD BLOCKING of passive moves
-    crisisDesperation: true,        // v35: Enable desperation mode at level 3
-    crisisAbsoluteElimination: true, // v35: NEW - ABSOLUTE ELIMINATION mode for passive moves
-    crisisMinimumActivity: 500,     // v35: NEW - Minimum activity score required in crisis
+    crisisMinThreatScore: 500,      // v36: Minimum threat creation required (300→500)
+    crisisHardBlockEnabled: true,   // v36: Enable HARD BLOCKING of passive moves
+    crisisDesperation: true,        // v36: Enable desperation mode at level 3
+    crisisAbsoluteElimination: true, // v36: ABSOLUTE REJECTION mode for passive moves
+    crisisMinimumActivity: 800,     // v36: Minimum activity score required in crisis (500→800)
+    crisisCounterplayRequired: true, // v36: NEW - MUST create counterplay in crisis
     
-    // v35.0.0: DELAYED GRATIFICATION - AlphaZero's SIGNATURE web-weaving
+    // v36.0.0: DELAYED GRATIFICATION - AlphaZero's SIGNATURE web-weaving
     // ═══════════════════════════════════════════════════════════════════════
-    // Moves that look odd but pay off 50+ moves later - TRUE ALIEN PARADIGM
+    // Moves that look odd but pay off 80+ moves later - TRUE TRANSCENDENT PARADIGM
     // This is what made AlphaZero "feel almost alien" to humans!
+    // GAME ANALYSIS: AlphaZero would have seen the endgame squeeze 30 moves early
     // ═══════════════════════════════════════════════════════════════════════
     delayedGratificationEnabled: true, // Enable delayed gratification eval
-    delayedGratificationWeight: 500.0, // v35: Weight for long-term gains (350→500)
-    positionImprovementBonus: 600,  // v35: Bonus for improving position (400→600)
-    quietStrengtheningBonus: 400,   // v35: Bonus for quiet strengthening moves (250→400)
-    longTermPlanningHorizon: 100,   // v35: Plan 100+ moves ahead (70→100)
-    strategicWebBonus: 800,         // v35: Bonus for strategic web patterns (500→800)
-    delayedMateBonus: 1000,         // v35: Bonus for building mating nets (600→1000)
-    positionalSqueeze: 600,         // v35: Bonus for slowly squeezing opponent (350→600)
-    alienWebWeaving: true,          // v35: NEW - Enable ALIEN-tier web-weaving
-    webWeavingDepth: 80,            // v35: NEW - Depth for web-weaving analysis
+    delayedGratificationWeight: 800.0, // v36: Weight for long-term gains (500→800)
+    positionImprovementBonus: 1000, // v36: Bonus for improving position (600→1000)
+    quietStrengtheningBonus: 700,   // v36: Bonus for quiet strengthening moves (400→700)
+    longTermPlanningHorizon: 150,   // v36: Plan 150+ moves ahead (100→150)
+    strategicWebBonus: 1500,        // v36: Bonus for strategic web patterns (800→1500)
+    delayedMateBonus: 2000,         // v36: Bonus for building mating nets (1000→2000)
+    positionalSqueeze: 1200,        // v36: Bonus for slowly squeezing opponent (600→1200)
+    alienWebWeaving: true,          // v36: Enable TRANSCENDENT-tier web-weaving
+    webWeavingDepth: 120,           // v36: Depth for web-weaving analysis (80→120)
+    strategicGoalTracking: true,    // v36: NEW - Track strategic goals across moves
+    positionImprovementTracking: true, // v36: NEW - Track position improvement
     
-    // v35.0.0: ENDGAME PERFECTION - MATHEMATICALLY FLAWLESS technique
+    // v36.0.0: ENDGAME PERFECTION - TABLEBASE-LEVEL FLAWLESS technique
     // ═══════════════════════════════════════════════════════════════════════
+    // GAME ANALYSIS: White's endgame was TERRIBLE - lost to a-pawn promotion!
     // AlphaZero's endgame play was "absolutely flawless" - replicate this!
     // ═══════════════════════════════════════════════════════════════════════
-    endgameKingActivityWeight: 800.0, // v35: King activity paramount in endgame (500→800)
-    endgamePassedPawnWeight: 700.0, // v35: Passed pawns critical (450→700)
-    endgameOppositionBonus: 1200,   // v35: Opposition bonus (800→1200)
+    endgameKingActivityWeight: 1200.0, // v36: King activity paramount in endgame (800→1200)
+    endgamePassedPawnWeight: 1200.0, // v36: Passed pawns critical (700→1200)
+    endgameOppositionBonus: 2000,   // v36: Opposition bonus (1200→2000)
     endgameZugzwangDetection: true, // Detect zugzwang
-    endgameTriangulationBonus: 1000, // v35: Triangulation techniques (700→1000)
-    endgameTechniqueDepth: 100,     // v35: Deep endgame calculation (80→100)
+    endgameTriangulationBonus: 1800, // v36: Triangulation techniques (1000→1800)
+    endgameTechniqueDepth: 150,     // v36: Deep endgame calculation (100→150)
     endgamePerfectConversion: true, // Perfect winning conversion
-    endgameKingCentralization: 900, // v35: King must activate in endgame (600→900)
-    endgamePawnPromotionBonus: 1500, // v35: Huge bonus for pawn promotion paths (1000→1500)
-    endgameKingActivityThreshold: 3, // v35: Minimum king moves toward center (5→3)
-    endgameSqueezeBonus: 800,       // v35: NEW - Bonus for endgame squeezing
-    endgamePerfectPlay: true,       // v35: NEW - Enable perfect endgame play mode
+    endgameKingCentralization: 1500, // v36: King must activate in endgame (900→1500)
+    endgamePawnPromotionBonus: 3000, // v36: Huge bonus for pawn promotion paths (1500→3000)
+    endgameKingActivityThreshold: 2, // v36: Minimum king moves toward center (3→2)
+    endgameSqueezeBonus: 1500,      // v36: Bonus for endgame squeezing (800→1500)
+    endgamePerfectPlay: true,       // v36: Enable perfect endgame play mode
+    endgameBlockadeValue: 2500,     // v36: NEW - MUST blockade enemy passed pawns
+    endgamePromoSquareControl: 2000, // v36: NEW - Control promotion squares
+    endgameRaceCalculation: true,   // v36: NEW - Calculate pawn races accurately
     
-    // v35.0.0: Castling bonus - KING SAFETY IS PARAMOUNT
-    castlingBonus: 1000,            // v35: MASSIVE bonus (800→1000)
-    kingInCenterPenalty: 1200,      // v35: SEVERE penalty after move 8 (800→1200)
-    notCastledByMove10Penalty: 800, // v35: Must castle early (500→800)
-    exposedKingPenalty: 1000,       // v35: Penalty for exposed king (600→1000)
+    // v36.0.0: ENEMY PASSED PAWN HANDLING - GAME ANALYSIS CRITICAL FIX
+    // The lost game showed White completely ignoring the a-pawn!
+    enemyPassedPawnAwareness: true, // v36: NEW - Always track enemy passed pawns
+    enemyPassedPawnValue: -3000,    // v36: NEW - Enemy passed pawn = HUGE THREAT
+    enemyPassedPawnOnSixth: -4000,  // v36: NEW - 6th/3rd rank passed pawn
+    enemyPassedPawnOnSeventh: -8000, // v36: NEW - 7th/2nd rank passed pawn = EMERGENCY
+    blockadePassedPawnBonus: 3000,  // v36: NEW - Big bonus for blockading
+    stopPassedPawnPriority: 5000,   // v36: NEW - Must stop advanced passed pawns
+    
+    // v36.0.0: Castling bonus - KING SAFETY IS PARAMOUNT
+    castlingBonus: 1500,            // v36: MASSIVE bonus (1000→1500)
+    kingInCenterPenalty: 2000,      // v36: SEVERE penalty after move 8 (1200→2000)
+    notCastledByMove10Penalty: 1500, // v36: Must castle early (800→1500)
+    exposedKingPenalty: 1800,       // v36: Penalty for exposed king (1000→1800)
     
     // Debouncing
     manualMoveDebounce: 600,
@@ -327,23 +376,48 @@ const CONFIG = {
     // Debug mode
     DEBUG_SELFPLAY: false,
     
-    // v35.0.0: CRITICAL PIECE SAFETY - ABSOLUTE ZERO BLUNDERS WITH 50+ MOVE HORIZON
+    // v36.0.0: CRITICAL PIECE SAFETY - ABSOLUTE ZERO BLUNDERS WITH 80+ MOVE HORIZON
     // ═══════════════════════════════════════════════════════════════════════
-    // The bot must NEVER blunder - predict outcomes 30+ moves deep!
+    // GAME ANALYSIS: White blundered the entire endgame - didn't see mating net!
+    // The bot must NEVER blunder - predict outcomes 50+ moves deep!
     // ═══════════════════════════════════════════════════════════════════════
     criticalPieceSafetyEnabled: true,    // Master switch for critical safety
     preMoveQueenScan: true,              // Scan for Queen attacks before ANY move
     preMoveRookScan: true,               // Scan for Rook attacks before ANY move
     forcedDefenseMode: true,             // Force defensive moves when attacked
-    immediateThreatsDepth: 6,            // v35: Look 6 plies ahead for threats (4→6)
-    knightForkScanDepth: 10,             // v35: Deep scan for knight forks (6→10)
+    immediateThreatsDepth: 10,           // v36: Look 10 plies ahead for threats (6→10)
+    knightForkScanDepth: 15,             // v36: Deep scan for knight forks (10→15)
     absoluteBlunderPrevention: true,     // NEVER allow moves losing >100cp immediately
-    immediateBlunderThreshold: -50,      // v35: cp loss threshold (-100→-50)
-    zeroBlunderVerificationDepth: 60,    // v35: Deep verification for zero blunders (40→60)
-    blunderHorizon: 40,                  // v35: Look 40+ moves for tactical issues (25→40)
-    tacticalScanDepth: 70,               // v35: Deep tactical horizon scan (50→70)
-    alienPrecision: true,                // v35: NEW - Enable ALIEN-tier precision
-    predictOutcomes: true,               // v35: NEW - Predict outcomes 30+ moves deep
+    immediateBlunderThreshold: -30,      // v36: cp loss threshold (-50→-30)
+    zeroBlunderVerificationDepth: 100,   // v36: Deep verification for zero blunders (60→100)
+    blunderHorizon: 60,                  // v36: Look 60+ moves for tactical issues (40→60)
+    tacticalScanDepth: 100,              // v36: Deep tactical horizon scan (70→100)
+    alienPrecision: true,                // v36: Enable TRANSCENDENT-tier precision
+    predictOutcomes: true,               // v36: Predict outcomes 50+ moves deep
+    matingNetScan: true,                 // v36: NEW - Scan for mating net construction
+    promotionThreatScan: true,           // v36: NEW - Scan for pawn promotion threats
+    
+    // v36.0.0: POSITIONAL JUDGMENT - TRANSCENDENT UNDERSTANDING
+    // GAME ANALYSIS: White had no positional understanding in the endgame
+    positionalJudgmentEnabled: true,     // v36: NEW - Enable transcendent positional judgment
+    pieceCoordinationScan: true,         // v36: NEW - Evaluate piece harmony
+    weakSquareTracking: true,            // v36: NEW - Track weak squares
+    pawnStructureTracking: true,         // v36: NEW - Track pawn structure changes
+    spaceControlTracking: true,          // v36: NEW - Track space control
+    
+    // v36.0.0: INITIATIVE TRACKING - GAME ANALYSIS FIX
+    // White lost the initiative and never regained it
+    initiativeTrackingEnabled: true,     // v36: NEW - Track initiative throughout
+    initiativeLossThreshold: -500,       // v36: NEW - Threshold for losing initiative
+    initiativeRecoveryPriority: 3000,    // v36: NEW - Priority for recovering initiative
+    
+    // v36.0.0: STRATEGIC GOAL SYSTEM - TRUE AlphaZero PLANNING
+    // AlphaZero plans 30+ moves ahead with specific strategic goals
+    strategicGoalsEnabled: true,         // v36: NEW - Enable strategic goal planning
+    shortTermGoals: 10,                  // v36: NEW - Goals for next 10 moves
+    mediumTermGoals: 30,                 // v36: NEW - Goals for next 30 moves  
+    longTermGoals: 60,                   // v36: NEW - Goals for next 60 moves
+    goalProgressTracking: true,          // v36: NEW - Track progress toward goals
 };
 
 // ═══════════════════════════════════════════════════════════════════════
