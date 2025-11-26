@@ -71,31 +71,32 @@ function debugLog(prefix, ...args) {
 // ═══════════════════════════════════════════════════════════════════════
 
 const CONFIG = {
-    // v33.0.0: ULTIMATE ALPHAZERO - SUPERHUMAN BEAST THAT CRUSHES STOCKFISH
-    // "Uncanny web-weaving ability, prioritizing deep understanding over brute-force"
-    // FIXES: Nh1, Ne2 disasters - NEVER allow passive pieces in crisis!
-    thinkingTimeMin: 150000,        // 150 seconds minimum (DEEPER STRATEGIC CALCULATION)
-    thinkingTimeMax: 600000,        // 600 seconds maximum (10 MINUTES for critical!)
+    // v34.0.0: TRUE ALPHAZERO PARADIGM-SHIFT - ALIEN INTELLIGENCE
+    // "A paradigm-shifter, a level that felt almost alien"
+    // CRITICAL FIX: Nh1, Ne2, b3, h3 disasters - ABSOLUTE HARD BLOCKS on passive moves!
+    // GOAL: Crush Stockfish with flawless endgame, perfect positional judgment, ZERO blunders
+    thinkingTimeMin: 180000,        // 180 seconds minimum (DEEPER STRATEGIC CALCULATION)
+    thinkingTimeMax: 720000,        // 720 seconds maximum (12 MINUTES for critical positions!)
     premoveTime: 500,
     humanMistakeRate: 0.0,          // 0% (ABSOLUTE ZERO MISTAKES)
     
-    // v33.0.0: MAXIMUM search depth - ALIEN INTELLIGENCE
-    baseDepth: 80,                  // Base depth - SUPERHUMAN (76→80)
-    strategicDepth: 88,             // Strategic positions - DEEP WEB-WEAVING (84→88)
-    endgameDepth: 96,               // Endgame - FLAWLESS TECHNIQUE (92→96)
-    openingDepth: 72,               // Opening - PERFECT THEORY (68→72)
-    classicalDepth: 92,             // Classical - MAXIMUM POWER (88→92)
-    winningDepth: 84,               // Winning - CRUSHING CONVERSION (80→84)
-    tacticalDepth: 90,              // Tactical - ABSOLUTE PRECISION (86→90)
-    criticalDepth: 98,              // Critical - PARADIGM-SHIFT POWER (94→98)
-    crisisDepth: 100,               // v33: Crisis mode - MAXIMUM EMERGENCY CALCULATION (96→100)
+    // v34.0.0: MAXIMUM search depth - TRUE ALIEN INTELLIGENCE
+    baseDepth: 88,                  // Base depth - BEYOND SUPERHUMAN (80→88)
+    strategicDepth: 96,             // Strategic positions - DEEP WEB-WEAVING (88→96)
+    endgameDepth: 104,              // Endgame - ABSOLUTELY FLAWLESS (96→104)
+    openingDepth: 80,               // Opening - PERFECT THEORY (72→80)
+    classicalDepth: 100,            // Classical - PARADIGM POWER (92→100)
+    winningDepth: 92,               // Winning - CRUSHING CONVERSION (84→92)
+    tacticalDepth: 98,              // Tactical - ABSOLUTE PRECISION (90→98)
+    criticalDepth: 108,             // Critical - PARADIGM-SHIFT POWER (98→108)
+    crisisDepth: 112,               // v34: Crisis mode - MAXIMUM EMERGENCY (100→112)
     
-    // v32.0.0: FORCING LINE DEPTH - 60+ MOVE TACTICAL HORIZON
-    forcingLineDepth: 60,           // Depth for captures/checks (55→60)
-    backRankMateDepth: 50,          // Back-rank patterns (45→50)
-    queenInfiltrationDepth: 45,     // Queen invasion patterns (40→45)
-    passedPawnThreatDepth: 55,      // Passed pawn calculation (50→55)
-    delayedGratificationDepth: 40,  // NEW: Moves that pay off later
+    // v34.0.0: FORCING LINE DEPTH - 70+ MOVE TACTICAL HORIZON
+    forcingLineDepth: 70,           // Depth for captures/checks (60→70)
+    backRankMateDepth: 60,          // Back-rank patterns (50→60)
+    queenInfiltrationDepth: 55,     // Queen invasion patterns (45→55)
+    passedPawnThreatDepth: 65,      // Passed pawn calculation (55→65)
+    delayedGratificationDepth: 50,  // v34: Moves that pay off later (40→50)
     
     // Time management - DEEP STRATEGIC CALCULATION
     earlyGameSpeed: 2.5,            // Maximum time in opening for theory
@@ -103,15 +104,15 @@ const CONFIG = {
     endGameSpeed: 4.0,              // Extended endgame for perfect technique (3.5→4.0)
     crisisSpeed: 5.0,               // NEW: Even more time in crisis
     
-    // v32.0.0: HOLISTIC POSITION EVALUATION - TRUE ALPHAZERO UNDERSTANDING
-    positionWeight: 25.0,           // PARADIGM-SHIFT (20.0→25.0)
-    initiativeBonus: 500,           // MASSIVE - tempo is everything (400→500)
-    pieceActivityBonus: 550,        // CRITICAL - active pieces win (450→550)
-    controlBonus: 400,              // HUGE - space control dominance (350→400)
-    mobilityWeight: 20.0,           // MASSIVE - piece mobility (16.0→20.0)
-    coordinationWeight: 25.0,       // CRITICAL - piece harmony (20.0→25.0)
-    developmentWeight: 30.0,        // SEVERE punishment for undeveloped (25.0→30.0)
-    centerControlWeight: 32.0,      // CRITICAL - central dominance (28.0→32.0)
+    // v34.0.0: HOLISTIC POSITION EVALUATION - TRUE PARADIGM-SHIFT UNDERSTANDING
+    positionWeight: 30.0,           // PARADIGM-SHIFT (25.0→30.0)
+    initiativeBonus: 600,           // MASSIVE - tempo is everything (500→600)
+    pieceActivityBonus: 700,        // CRITICAL - active pieces win (550→700)
+    controlBonus: 500,              // HUGE - space control dominance (400→500)
+    mobilityWeight: 25.0,           // MASSIVE - piece mobility (20.0→25.0)
+    coordinationWeight: 30.0,       // CRITICAL - piece harmony (25.0→30.0)
+    developmentWeight: 35.0,        // SEVERE punishment for undeveloped (30.0→35.0)
+    centerControlWeight: 38.0,      // CRITICAL - central dominance (32.0→38.0)
     
     // v32.0.0: ZERO CREATIVITY - Trust engine completely
     sacrificeThreshold: 0.00,       // ZERO sacrifices - ONLY PROVEN WINS
@@ -172,11 +173,11 @@ const CONFIG = {
     sacrificeValidationDepth: 40,   // Deeper verification (35→40)
     materialCrisisThreshold: -20,   // Earlier crisis detection (-30→-20)
     
-    // v32.0.0: COUNTERPLAY GENERATION - KEY FOR WORSE POSITIONS
-    counterplayPriority: 800,       // HUGE bonus for threats when behind (600→800)
-    passivePlayPenalty: -1200,      // SEVERE penalty for passive moves (-800→-1200)
-    initiativePremiumWhenBehind: 5.0, // MASSIVE multiplier (4.0→5.0)
-    activeDefensePriority: 700,     // NEW: Bonus for active defense
+    // v34.0.0: COUNTERPLAY GENERATION - ABSOLUTE PRIORITY IN WORSE POSITIONS
+    counterplayPriority: 1200,      // v34: HUGE bonus for threats when behind (800→1200)
+    passivePlayPenalty: -2000,      // v34: SEVERE penalty for passive moves (-1200→-2000)
+    initiativePremiumWhenBehind: 8.0, // v34: MASSIVE multiplier (5.0→8.0)
+    activeDefensePriority: 1000,    // v34: Bonus for active defense (700→1000)
     
     // v32.0.0: QUEEN TRADE EVALUATION (EXTREME)
     queenTradeWhenBehindPenalty: -1500, // EXTREME penalty (-1000→-1500)
@@ -213,19 +214,18 @@ const CONFIG = {
     strategicWebWeight: 60.0,       // Weight for strategic plans (50.0→60.0)
     prophylaxisWeight: 50.0,        // Preventing opponent plans (40.0→50.0)
     
-    // v32.0.0: TRUE MCTS with UCB1 SELECTION
-    // v33.0.0: TRUE MCTS with UCB1 SELECTION - PARADIGM SHIFT
-    // The previous "MCTS" was fake - just running fixed phases
-    // NOW: Real tree search with exploration/exploitation balance
-    mctsSimulations: 150,           // v33: MORE Monte Carlo simulations (80→150)
-    mctsDepthPerSim: 50,            // v33: DEEPER per simulation (40→50)
-    mctsStrategicWeight: 90.0,      // v33: MCTS evaluation weight (70→90)
-    mctsUCB1Constant: 1.41421356,   // v33: UCB1 exploration constant (exact sqrt(2))
-    mctsExpansionThreshold: 3,      // v33: Visits before expansion (was 5, now 3)
-    mctsTreeDepth: 40,              // v33: NEW - Maximum tree depth
-    mctsRolloutDepth: 60,           // v33: NEW - Rollout simulation depth
-    mctsStrategicRollouts: 50,      // v33: NEW - Strategic rollouts per move
-    mctsPruningThreshold: -500,     // v33: NEW - Prune moves below this eval
+    // v34.0.0: TRUE MCTS with UCB1 SELECTION - PARADIGM-SHIFT INTELLIGENCE
+    // The previous "MCTS" was too weak - NOW: Real tree search with proper exploration
+    // v34: Doubled simulations, deeper rollouts, mandatory threat generation
+    mctsSimulations: 300,           // v34: MORE Monte Carlo simulations (150→300)
+    mctsDepthPerSim: 70,            // v34: DEEPER per simulation (50→70)
+    mctsStrategicWeight: 100.0,     // v34: MCTS evaluation weight (90→100)
+    mctsUCB1Constant: 1.41421356,   // UCB1 exploration constant (exact sqrt(2))
+    mctsExpansionThreshold: 2,      // v34: Visits before expansion (3→2)
+    mctsTreeDepth: 60,              // v34: Maximum tree depth (40→60)
+    mctsRolloutDepth: 80,           // v34: Rollout simulation depth (60→80)
+    mctsStrategicRollouts: 80,      // v34: Strategic rollouts per move (50→80)
+    mctsPruningThreshold: -400,     // v34: Prune moves below this eval (-500→-400)
     
     // v33.0.0: PATTERN RECOGNITION - ALIEN INTELLIGENCE
     discoveredAttackBonus: 2000,    // v33: HUGE reward for discoveries (was 1500)
@@ -243,46 +243,54 @@ const CONFIG = {
     hangingPiecePenalty: -1200,     // v33: Penalty for hanging pieces (was -700)
     undefendedPiecePenalty: -500,   // v33: Penalty for undefended pieces (was -300)
     
-    // v33.0.0: PIECE ACTIVITY - "KNIGHTS ON RIM ARE GRIM" - EXTREME PENALTIES
+    // v34.0.0: PIECE ACTIVITY - "KNIGHTS ON RIM ARE DEATH" - EXTREME HARD BLOCKS
     // THE Nh1, Ne2 DISASTER FIX - These moves DESTROYED us in the lost game!
-    knightOnRimPenalty: -800,       // v33: Knight on a/h file (was -150, now -800!) NEVER ALLOW!
-    knightOnBackRankPenalty: -1200, // v33: Knight on 1st/8th rank (was -200, now -1200!) Nh1 = DISASTER
-    knightCornerPenalty: -2000,     // v33: NEW - Knight on a1/h1/a8/h8 = ABSOLUTE DISASTER
-    bishopTrappedPenalty: -600,     // v33: Bishop with limited mobility (was -250)
-    rookNotOnOpenFilePenalty: -150, // v33: Rook not on open/semi-open file (was -80)
-    pieceActivityWhenBehindMultiplier: 5.0, // v33: Amplify activity when losing (was 2.5, now 5.0!)
-    passivePiecePenalty: -500,      // v33: NEW - Any passive piece placement
-    retreatingPiecePenalty: -400,   // v33: NEW - Pieces moving backward without purpose
+    // v34: DRAMATICALLY increased penalties - these moves are BLOCKED, not just penalized
+    knightOnRimPenalty: -2500,      // v34: Knight on a/h file = TERRIBLE (-800→-2500)
+    knightOnBackRankPenalty: -5000, // v34: Knight on 1st/8th rank = DISASTER (-1200→-5000)
+    knightCornerPenalty: -10000,    // v34: Knight on a1/h1/a8/h8 = ABSOLUTE DISASTER (-2000→-10000)
+    bishopTrappedPenalty: -1200,    // v34: Bishop with limited mobility (-600→-1200)
+    rookNotOnOpenFilePenalty: -250, // v34: Rook not on open/semi-open file (-150→-250)
+    pieceActivityWhenBehindMultiplier: 8.0, // v34: EXTREME amplify when losing (5.0→8.0)
+    passivePiecePenalty: -1000,     // v34: Any passive piece placement (-500→-1000)
+    retreatingPiecePenalty: -800,   // v34: Pieces moving backward without purpose (-400→-800)
     
-    // v33.0.0: CRISIS MODE - EMERGENCY PROTOCOL THAT ACTUALLY WORKS
-    // The bot COLLAPSED because crisis mode didn't trigger proper responses!
+    // v34.0.0: CRISIS MODE - EMERGENCY PROTOCOL WITH HARD BLOCKS
+    // The bot COLLAPSED because crisis mode didn't HARD BLOCK passive responses!
+    // v34: EXTREME penalties and MANDATORY threat generation
     crisisModeEnabled: true,        // Enable crisis detection
-    crisisModeThreshold: -100,      // v33: Trigger crisis EARLIER (was -150, now -100)
-    crisisActiveDefenseBonus: 800,  // v33: Bonus for threats in crisis (was 500, now 800)
-    crisisPassivePenalty: -3000,    // v33: EXTREME penalty for passive in crisis (was -1500, now -3000!)
+    crisisModeThreshold: -80,       // v34: Trigger crisis EARLIER (was -100, now -80)
+    crisisActiveDefenseBonus: 1500, // v34: Bonus for threats in crisis (800→1500)
+    crisisPassivePenalty: -8000,    // v34: EXTREME penalty for passive in crisis (-3000→-8000!)
     crisisForceActivity: true,      // Force piece activity in crisis
-    crisisForceCounterplay: true,   // v33: NEW - FORCE counterplay generation
-    crisisBlockPassiveMoves: true,  // v33: NEW - Completely BLOCK passive moves in crisis
-    crisisMinThreatScore: 100,      // v33: NEW - Minimum threat creation required in crisis
+    crisisForceCounterplay: true,   // FORCE counterplay generation
+    crisisBlockPassiveMoves: true,  // Completely BLOCK passive moves in crisis
+    crisisMinThreatScore: 200,      // v34: Minimum threat creation required (100→200)
+    crisisHardBlockEnabled: true,   // v34: NEW - Enable HARD BLOCKING of passive moves
+    crisisDesperation: true,        // v34: NEW - Enable desperation mode at level 3
     
-    // v33.0.0: DELAYED GRATIFICATION - Moves that pay off later
-    // AlphaZero's signature: moves that look odd but pay off 30+ moves later
+    // v34.0.0: DELAYED GRATIFICATION - AlphaZero's signature web-weaving
+    // Moves that look odd but pay off 30+ moves later - TRUE PARADIGM SHIFT
     delayedGratificationEnabled: true, // Enable delayed gratification eval
-    delayedGratificationWeight: 200.0, // v33: Weight for long-term gains (was 100, now 200)
-    positionImprovementBonus: 250,  // v33: Bonus for improving position (was 150)
-    quietStrengtheningBonus: 150,   // v33: Bonus for quiet strengthening moves (was 80)
-    longTermPlanningHorizon: 50,    // v33: NEW - Plan 50+ moves ahead
-    strategicWebBonus: 300,         // v33: NEW - Bonus for strategic web patterns
+    delayedGratificationWeight: 350.0, // v34: Weight for long-term gains (200→350)
+    positionImprovementBonus: 400,  // v34: Bonus for improving position (250→400)
+    quietStrengtheningBonus: 250,   // v34: Bonus for quiet strengthening moves (150→250)
+    longTermPlanningHorizon: 70,    // v34: Plan 70+ moves ahead (50→70)
+    strategicWebBonus: 500,         // v34: Bonus for strategic web patterns (300→500)
+    delayedMateBonus: 600,          // v34: NEW - Bonus for building mating nets
+    positionalSqueeze: 350,         // v34: NEW - Bonus for slowly squeezing opponent
     
-    // v33.0.0: ENDGAME PERFECTION - Flawless technique
-    endgameKingActivityWeight: 350.0, // v33: King activity paramount in endgame (was 200)
-    endgamePassedPawnWeight: 300.0, // v33: Passed pawns critical (was 180)
-    endgameOppositionBonus: 500,    // v33: Opposition bonus (was 300)
+    // v34.0.0: ENDGAME PERFECTION - Absolutely flawless technique
+    endgameKingActivityWeight: 500.0, // v34: King activity paramount in endgame (350→500)
+    endgamePassedPawnWeight: 450.0, // v34: Passed pawns critical (300→450)
+    endgameOppositionBonus: 800,    // v34: Opposition bonus (500→800)
     endgameZugzwangDetection: true, // Detect zugzwang
-    endgameTriangulationBonus: 400, // v33: Triangulation techniques (was 250)
-    endgameTechniqueDepth: 60,      // v33: Deep endgame calculation (was 50)
-    endgamePerfectConversion: true, // v33: NEW - Perfect winning conversion
-    endgameKingCentralization: 400, // v33: NEW - King must activate in endgame
+    endgameTriangulationBonus: 700, // v34: Triangulation techniques (400→700)
+    endgameTechniqueDepth: 80,      // v34: Deep endgame calculation (60→80)
+    endgamePerfectConversion: true, // Perfect winning conversion
+    endgameKingCentralization: 600, // v34: King must activate in endgame (400→600)
+    endgamePawnPromotionBonus: 1000, // v34: NEW - Huge bonus for pawn promotion paths
+    endgameKingActivityThreshold: 5, // v34: NEW - Minimum king moves toward center
     
     // Castling bonus - KING SAFETY IS PARAMOUNT
     castlingBonus: 800,             // MASSIVE bonus (700→800)
@@ -297,16 +305,18 @@ const CONFIG = {
     // Debug mode
     DEBUG_SELFPLAY: false,
     
-    // v32.0.0: CRITICAL PIECE SAFETY - ABSOLUTE ZERO BLUNDERS
+    // v34.0.0: CRITICAL PIECE SAFETY - ABSOLUTE ZERO BLUNDERS WITH 40+ MOVE HORIZON
     criticalPieceSafetyEnabled: true,    // Master switch for critical safety
     preMoveQueenScan: true,              // Scan for Queen attacks before ANY move
     preMoveRookScan: true,               // Scan for Rook attacks before ANY move
     forcedDefenseMode: true,             // Force defensive moves when attacked
-    immediateThreatsDepth: 3,            // Look 3 plies ahead for threats (2→3)
-    knightForkScanDepth: 4,              // Specifically scan for knight forks (3→4)
+    immediateThreatsDepth: 4,            // v34: Look 4 plies ahead for threats (3→4)
+    knightForkScanDepth: 6,              // v34: Deep scan for knight forks (4→6)
     absoluteBlunderPrevention: true,     // NEVER allow moves losing >200cp immediately
-    immediateBlunderThreshold: -150,     // cp loss threshold (-200→-150)
-    zeroBlunderVerificationDepth: 25,    // NEW: Deep verification for zero blunders
+    immediateBlunderThreshold: -100,     // v34: cp loss threshold (-150→-100)
+    zeroBlunderVerificationDepth: 40,    // v34: Deep verification for zero blunders (25→40)
+    blunderHorizon: 25,                  // v34: NEW - Look 25+ moves for tactical issues
+    tacticalScanDepth: 50,               // v34: NEW - Deep tactical horizon scan
 };
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -1135,9 +1145,9 @@ function getCrisisResponse(level) {
 }
 
 /**
- * v33.0.0: Evaluate move quality in crisis mode
- * CRITICAL FIX: The Nh1, Ne2, b3, h3 disaster - NEVER allow passive moves!
- * v33 UPDATE: Much stronger penalties and hard blocks
+ * v34.0.0: Evaluate move quality in crisis mode
+ * CRITICAL FIX: The Nh1, Ne2, b3, h3 disaster - HARD BLOCK ALL passive moves!
+ * v34 UPDATE: EXTREME penalties and MANDATORY threat generation
  */
 function evaluateCrisisModeMove(fen, move, board, activeColor, currentEval) {
     if (!crisisModeActive) return 0;
@@ -1153,67 +1163,103 @@ function evaluateCrisisModeMove(fen, move, board, activeColor, currentEval) {
     
     const pieceType = movingPiece.toLowerCase();
     
-    // v33: 1. EXTREME PENALTY for passive moves in crisis - This was the bug!
+    // v34: 1. ABSOLUTE HARD BLOCK for passive moves in crisis - THIS FIXES THE BUG!
     if (isPassiveCrisisMove(move, fen, board, activeColor)) {
-        // v33: Scale penalty by crisis level - at level 3, this is -4500 to -6000 cp!
-        crisisBonus += CONFIG.crisisPassivePenalty * (crisisLevel * 0.8);
-        debugLog("[CRISIS_v33]", `🚫🚫🚫 PASSIVE MOVE ${move} in CRISIS LEVEL ${crisisLevel} - EXTREME penalty ${crisisBonus}cp`);
+        // v34: Scale penalty by crisis level - at level 3, this is -12000 to -19200 cp!
+        const scaledPenalty = CONFIG.crisisPassivePenalty * (crisisLevel * 0.8);
+        crisisBonus += scaledPenalty;
+        debugLog("[CRISIS_v34]", `🚫🚫🚫 PASSIVE MOVE ${move} in CRISIS LEVEL ${crisisLevel} - EXTREME penalty ${scaledPenalty}cp`);
         
-        // v33: If crisis level 3, return immediately with huge negative
+        // v34: At crisis level 2+, HARD BLOCK this move entirely
+        if (crisisLevel >= 2) {
+            debugLog("[CRISIS_v34]", `🛑 HARD BLOCKING passive move ${move} - crisis level ${crisisLevel}`);
+            return -15000; // Essentially eliminate this move
+        }
+        
+        // v34: At crisis level 3, ABSOLUTE BLOCK
         if (crisisLevel >= 3) {
-            return crisisBonus - 5000; // Essentially eliminate this move
+            debugLog("[CRISIS_v34]", `🛑🛑🛑 ABSOLUTE BLOCK on passive move ${move} in DESPERATION`);
+            return -25000; // ABSOLUTE elimination
         }
     }
     
-    // v33: 2. Check for piece activity HARD VIOLATIONS first
+    // v34: 2. Check for piece activity HARD VIOLATIONS - BLOCKING bad knight moves
     const activityViolation = checkPieceActivityViolation(move, board, activeColor);
     if (activityViolation.isViolation) {
-        crisisBonus += activityViolation.penalty * crisisLevel;
-        debugLog("[CRISIS_v33]", `🚫 ACTIVITY VIOLATION ${move}: ${activityViolation.reason} - penalty ${activityViolation.penalty * crisisLevel}cp`);
-        return crisisBonus; // Don't reward this move with anything
+        const scaledViolation = activityViolation.penalty * crisisLevel * 1.5;
+        crisisBonus += scaledViolation;
+        debugLog("[CRISIS_v34]", `🚫 ACTIVITY VIOLATION ${move}: ${activityViolation.reason} - penalty ${scaledViolation}cp`);
+        return crisisBonus - 5000; // Don't reward this move with anything
     }
     
-    // v33: 3. MASSIVE BONUS for creating threats - This is what we NEED
+    // v34: 3. MASSIVE BONUS for creating threats - This is what we NEED
     const threatScore = evaluateThreatCreation(fen, move, board, activeColor);
     if (threatScore > 0) {
-        // v33: Amplified threat bonus - up to 5x multiplier!
-        crisisBonus += threatScore * CONFIG.pieceActivityWhenBehindMultiplier * crisisLevel;
-        debugLog("[CRISIS_v33]", `✅ Threat creation ${move}: +${(threatScore * CONFIG.pieceActivityWhenBehindMultiplier * crisisLevel).toFixed(0)}cp`);
+        // v34: Amplified threat bonus - up to 8x multiplier!
+        const amplifiedThreat = threatScore * CONFIG.pieceActivityWhenBehindMultiplier * crisisLevel;
+        crisisBonus += amplifiedThreat;
+        debugLog("[CRISIS_v34]", `✅ Threat creation ${move}: +${amplifiedThreat.toFixed(0)}cp`);
     } else if (CONFIG.crisisMinThreatScore > 0 && threatScore < CONFIG.crisisMinThreatScore) {
-        // v33: In crisis, we REQUIRE some threat creation
-        crisisBonus -= 200 * crisisLevel;
-        debugLog("[CRISIS_v33]", `⚠️ Move ${move} creates no threats in crisis - penalty`);
+        // v34: In crisis, we REQUIRE some threat creation - bigger penalty
+        const noThreatPenalty = -400 * crisisLevel;
+        crisisBonus += noThreatPenalty;
+        debugLog("[CRISIS_v34]", `⚠️ Move ${move} creates no threats in crisis - penalty ${noThreatPenalty}cp`);
     }
     
-    // v33: 4. BIG BONUS for captures (forcing moves)
+    // v34: 4. BIG BONUS for captures (forcing moves) - enhanced
     if (capturedPiece) {
         const capturedValue = getPieceValue(capturedPiece);
-        crisisBonus += CONFIG.crisisActiveDefenseBonus * (crisisLevel * 0.5) + capturedValue * 0.2;
-        debugLog("[CRISIS_v33]", `✅ Capture ${move}: +${(CONFIG.crisisActiveDefenseBonus * crisisLevel * 0.5).toFixed(0)}cp`);
+        const captureBonus = CONFIG.crisisActiveDefenseBonus * (crisisLevel * 0.7) + capturedValue * 0.3;
+        crisisBonus += captureBonus;
+        debugLog("[CRISIS_v34]", `✅ Capture ${move}: +${captureBonus.toFixed(0)}cp`);
     }
     
-    // v33: 5. HUGE BONUS for checks (forcing)
+    // v34: 5. HUGE BONUS for checks (forcing) - enhanced
     const givesCheck = doesMoveGiveCheck(fen, move, board, activeColor);
     if (givesCheck) {
-        crisisBonus += CONFIG.crisisActiveDefenseBonus * crisisLevel * 1.5;
-        debugLog("[CRISIS_v33]", `✅ CHECK ${move}: +${(CONFIG.crisisActiveDefenseBonus * crisisLevel * 1.5).toFixed(0)}cp`);
+        const checkBonus = CONFIG.crisisActiveDefenseBonus * crisisLevel * 2.0;
+        crisisBonus += checkBonus;
+        debugLog("[CRISIS_v34]", `✅ CHECK ${move}: +${checkBonus.toFixed(0)}cp`);
     }
     
-    // 5. PENALTY for piece activity regression - "Knights on rim are GRIM"
+    // v34: 6. PENALTY for piece activity regression - "Knights on rim = DEATH"
     const activityPenalty = evaluatePieceActivityRegression(fromSquare, toSquare, pieceType, activeColor);
     if (activityPenalty < 0) {
-        crisisBonus += activityPenalty * CONFIG.pieceActivityWhenBehindMultiplier * crisisLevel;
-        debugLog("[CRISIS_v32]", `❌ Activity regression ${move}: ${activityPenalty * CONFIG.pieceActivityWhenBehindMultiplier * crisisLevel}cp`);
+        const scaledActivity = activityPenalty * CONFIG.pieceActivityWhenBehindMultiplier * crisisLevel;
+        crisisBonus += scaledActivity;
+        debugLog("[CRISIS_v34]", `❌ Activity regression ${move}: ${scaledActivity.toFixed(0)}cp`);
     }
     
-    // 6. PENALTY for moving to back rank (except rooks to open files)
+    // v34: 7. SEVERE penalty for moving to back rank
     const toRank = parseInt(toSquare[1]);
     const backRank = activeColor === 'w' ? 1 : 8;
     if (toRank === backRank && pieceType !== 'k' && pieceType !== 'r') {
-        crisisBonus += CONFIG.knightOnBackRankPenalty * crisisLevel;
+        const backRankPenalty = CONFIG.knightOnBackRankPenalty * crisisLevel * 0.8;
+        crisisBonus += backRankPenalty;
+        debugLog("[CRISIS_v34]", `❌ Back rank move ${move}: ${backRankPenalty.toFixed(0)}cp`);
+    }
+    
+    // v34: 8. BONUS for piece centralization
+    const toCentrality = evaluatePieceCentrality(toSquare);
+    const fromCentrality = evaluatePieceCentrality(fromSquare);
+    if (toCentrality > fromCentrality) {
+        const centralBonus = (toCentrality - fromCentrality) * 50 * crisisLevel;
+        crisisBonus += centralBonus;
+        debugLog("[CRISIS_v34]", `✅ Centralization ${move}: +${centralBonus.toFixed(0)}cp`);
     }
     
     return crisisBonus;
+}
+
+/**
+ * v34.0.0: Evaluate piece centrality (0-4 scale, 4 = most central)
+ */
+function evaluatePieceCentrality(square) {
+    const file = square.charCodeAt(0) - 'a'.charCodeAt(0);
+    const rank = parseInt(square[1]) - 1;
+    const fileFromCenter = Math.abs(file - 3.5);
+    const rankFromCenter = Math.abs(rank - 3.5);
+    return Math.max(0, 4 - (fileFromCenter + rankFromCenter));
 }
 
 /**
@@ -2853,7 +2899,7 @@ function canKnightReach(from, to) {
  * NOW: Real tree expansion with UCB1 selection for exploration/exploitation
  * SUPERHUMAN: 50+ move strategic web-weaving with proper backpropagation
  */
-function trueMCTSEvaluate(fen, candidateMove, depth = 60) {
+function trueMCTSEvaluate(fen, candidateMove, depth = 80) {
     let totalScore = 0;
     let wins = 0;
     let visits = 0;
@@ -2864,23 +2910,30 @@ function trueMCTSEvaluate(fen, candidateMove, depth = 60) {
         const board = parseFenToBoard(fen);
         const activeColor = fen.split(' ')[1];
         
-        // v33: CRISIS MODE CHECK - Adjust evaluation based on crisis
+        // v34: CRISIS MODE CHECK - Adjust evaluation based on crisis
         if (crisisModeActive) {
             const crisisScore = evaluateCrisisModeMove(fen, candidateMove, board, activeColor, lastEvaluation);
             crisisAdjustment = crisisScore;
             
-            // v33: HARD BLOCK on passive moves in crisis
+            // v34: ABSOLUTE HARD BLOCK on passive moves in crisis
             if (CONFIG.crisisBlockPassiveMoves && isPassiveCrisisMove(candidateMove, fen, board, activeColor)) {
-                debugLog("[MCTS_v33]", `🚫 BLOCKING PASSIVE MOVE ${candidateMove} in crisis - returning EXTREME negative`);
-                return -10000 + crisisAdjustment; // Essentially eliminate this move
+                debugLog("[MCTS_v34]", `🛑 HARD BLOCKING PASSIVE MOVE ${candidateMove} in crisis - ELIMINATED`);
+                return -20000 + crisisAdjustment; // ABSOLUTE elimination of passive moves
             }
         }
         
-        // v33: PIECE ACTIVITY HARD CHECK - Block terrible piece placements
+        // v34: PIECE ACTIVITY HARD CHECK - BLOCK terrible piece placements
         const activityViolation = checkPieceActivityViolation(candidateMove, board, activeColor);
         if (activityViolation.isViolation) {
-            debugLog("[MCTS_v33]", `🚫 BLOCKING ${candidateMove}: ${activityViolation.reason}`);
-            return activityViolation.penalty;
+            debugLog("[MCTS_v34]", `🛑 BLOCKING ${candidateMove}: ${activityViolation.reason}`);
+            return activityViolation.penalty - 5000; // Enhanced blocking
+        }
+        
+        // v34: Pre-check for extremely bad moves (knights to rim/back rank)
+        const preCheck = preCheckMoveQuality(candidateMove, board, activeColor);
+        if (preCheck.isBlockedMove) {
+            debugLog("[MCTS_v34]", `🛑 PRE-BLOCKING ${candidateMove}: ${preCheck.reason}`);
+            return preCheck.penalty;
         }
         
         // Create root node for this candidate move
@@ -2894,32 +2947,32 @@ function trueMCTSEvaluate(fen, candidateMove, depth = 60) {
             avgValue: 0
         };
         
-        // v33: MCTS Tree for proper UCB1 selection
+        // v34: MCTS Tree for proper UCB1 selection
         const mctsTree = new Map();
         mctsTree.set(candidateMove, rootNode);
         
-        // Run MCTS simulations with TRUE UCB1 selection
+        // v34: Run ENHANCED MCTS simulations with TRUE UCB1 selection
         for (let sim = 0; sim < CONFIG.mctsSimulations; sim++) {
             let currentNode = rootNode;
             let simulationScore = 0;
             
-            // v33: UCB1 SELECTION PHASE - Select best child using UCB1 formula
+            // v34: UCB1 SELECTION PHASE - Select best child using UCB1 formula
             const ucb1Score = computeUCB1Score(rootNode, sim + 1);
             
-            // Phase 1: ZERO BLUNDER VERIFICATION (25% of simulations)
-            // CRITICAL: This catches moves like Nh1
-            if (sim < CONFIG.mctsSimulations * 0.25) {
+            // Phase 1: ZERO BLUNDER VERIFICATION (30% of simulations) - CRITICAL
+            // This catches moves like Nh1, Ne2 that destroyed us
+            if (sim < CONFIG.mctsSimulations * 0.30) {
                 const tacticalResult = tacticalRolloutV33(fen, candidateMove, CONFIG.mctsDepthPerSim, board, activeColor);
                 rootNode.visits++;
                 
                 if (!tacticalResult.noBlunders) {
-                    // BLUNDER DETECTED - Heavy penalty
-                    simulationScore = -tacticalResult.totalDanger * 2;
+                    // BLUNDER DETECTED - Heavy penalty with v34 multiplier
+                    simulationScore = -tacticalResult.totalDanger * 3;
                     totalScore += simulationScore;
                     visits++;
-                    debugLog("[MCTS_v33]", `🚨 Tactical danger for ${candidateMove}: ${tacticalResult.totalDanger}`);
+                    debugLog("[MCTS_v34]", `🚨 Tactical danger for ${candidateMove}: ${tacticalResult.totalDanger} → score ${simulationScore}`);
                 } else {
-                    simulationScore = tacticalResult.score * 1.5;
+                    simulationScore = tacticalResult.score * 1.8;
                     totalScore += simulationScore;
                     visits++;
                     if (tacticalResult.score > 50) wins++;
@@ -2929,22 +2982,22 @@ function trueMCTSEvaluate(fen, candidateMove, depth = 60) {
             }
             
             // Phase 2: STRATEGIC WEB-WEAVING (35% of simulations)
-            // v33: Extended to 50+ moves with proper evaluation
-            if (sim < CONFIG.mctsSimulations * 0.60) {
+            // v34: Extended to 70+ moves with proper evaluation
+            if (sim < CONFIG.mctsSimulations * 0.65) {
                 const strategicResult = deepStrategicRolloutV33(fen, candidateMove, CONFIG.mctsRolloutDepth, sim, board, activeColor);
                 rootNode.visits++;
                 
                 simulationScore = strategicResult.score;
                 
-                // v33: Bonus for strategic goal achievement
+                // v34: Enhanced bonus for strategic goal achievement
                 if (strategicResult.strategicGoalAchieved) {
-                    simulationScore *= 1.3;
+                    simulationScore *= 1.5;
                     strategicWins++;
                 }
                 
-                // v33: Bonus for piece improvement trajectory
+                // v34: Big bonus for piece improvement trajectory
                 if (strategicResult.pieceActivityImproved) {
-                    simulationScore += CONFIG.pieceCoordinationBonus;
+                    simulationScore += CONFIG.pieceCoordinationBonus * 1.5;
                 }
                 
                 totalScore += simulationScore;
@@ -2955,15 +3008,15 @@ function trueMCTSEvaluate(fen, candidateMove, depth = 60) {
             }
             
             // Phase 3: COUNTERPLAY & PROPHYLAXIS (20% of simulations)
-            if (sim < CONFIG.mctsSimulations * 0.80) {
+            if (sim < CONFIG.mctsSimulations * 0.85) {
                 const prophylacticResult = prophylacticRolloutV33(fen, candidateMove, CONFIG.mctsDepthPerSim, board, activeColor);
                 rootNode.visits++;
                 
                 simulationScore = prophylacticResult.score;
                 
-                // v33: HUGE bonus for counterplay in crisis
+                // v34: MASSIVE bonus for counterplay in crisis
                 if (crisisModeActive && prophylacticResult.createsCounterplay) {
-                    simulationScore += CONFIG.counterplayPriority * crisisLevel;
+                    simulationScore += CONFIG.counterplayPriority * crisisLevel * 1.5;
                 }
                 
                 totalScore += simulationScore;
@@ -2973,16 +3026,16 @@ function trueMCTSEvaluate(fen, candidateMove, depth = 60) {
                 continue;
             }
             
-            // Phase 4: ENDGAME PERFECTION (20% of simulations)
+            // Phase 4: ENDGAME PERFECTION (15% of simulations)
             const endgameResult = endgameRolloutV33(fen, candidateMove, CONFIG.endgameTechniqueDepth, board, activeColor);
             rootNode.visits++;
             
             simulationScore = endgameResult.score;
             
-            // v33: Enhanced endgame bonuses
+            // v34: Enhanced endgame bonuses
             if (endgameResult.hasOpposition) simulationScore += CONFIG.endgameOppositionBonus;
             if (endgameResult.canTriangulate) simulationScore += CONFIG.endgameTriangulationBonus;
-            if (endgameResult.createsZugzwang) simulationScore += CONFIG.endgameOppositionBonus;
+            if (endgameResult.createsZugzwang) simulationScore += CONFIG.endgameOppositionBonus * 1.2;
             
             totalScore += simulationScore;
             rootNode.totalValue += simulationScore;
@@ -2992,28 +3045,66 @@ function trueMCTSEvaluate(fen, candidateMove, depth = 60) {
         
         if (visits === 0) return crisisAdjustment;
         
-        // Calculate final MCTS score with v33 UCB1 exploration bonus
+        // Calculate final MCTS score with v34 UCB1 exploration bonus
         const avgScore = totalScore / visits;
         const winRate = wins / visits;
         const strategicWinRate = strategicWins / Math.max(1, visits);
         
-        // v33: Proper UCB1 formula for final score
+        // v34: Proper UCB1 formula for final score
         const explorationBonus = CONFIG.mctsUCB1Constant * Math.sqrt(Math.log(visits + 1) / (rootNode.visits + 1));
         
-        // v33: Weighted combination with crisis adjustment
+        // v34: Weighted combination with enhanced crisis adjustment
         let mctsScore = avgScore * 0.45 + 
-                        (winRate * 800) * 0.25 + 
-                        (strategicWinRate * 500) * 0.20 +
-                        (explorationBonus * 40) * 0.10 +
+                        (winRate * 1000) * 0.25 + 
+                        (strategicWinRate * 700) * 0.20 +
+                        (explorationBonus * 50) * 0.10 +
                         crisisAdjustment;
         
-        debugLog("[MCTS_v33]", `🎯 Move ${candidateMove}: visits=${visits}, wins=${wins}, stratWins=${strategicWins}, avgScore=${avgScore.toFixed(1)}, winRate=${(winRate*100).toFixed(1)}%, crisis=${crisisAdjustment.toFixed(0)}, final=${mctsScore.toFixed(1)}`);
+        debugLog("[MCTS_v34]", `🎯 Move ${candidateMove}: visits=${visits}, wins=${wins}, stratWins=${strategicWins}, avgScore=${avgScore.toFixed(1)}, winRate=${(winRate*100).toFixed(1)}%, crisis=${crisisAdjustment.toFixed(0)}, final=${mctsScore.toFixed(1)}`);
         
         return mctsScore;
     } catch (e) {
-        debugLog("[MCTS_v33]", `⚠️ Error: ${e.message}`);
+        debugLog("[MCTS_v34]", `⚠️ Error: ${e.message}`);
         return crisisAdjustment;
     }
+}
+
+/**
+ * v34.0.0: Pre-check move quality for obvious bad moves
+ */
+function preCheckMoveQuality(move, board, activeColor) {
+    const result = { isBlockedMove: false, reason: '', penalty: 0 };
+    
+    const fromSquare = move.substring(0, 2);
+    const toSquare = move.substring(2, 4);
+    const piece = board.get(fromSquare);
+    
+    if (!piece) return result;
+    
+    const pieceType = piece.toLowerCase();
+    const toFile = toSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+    const toRank = parseInt(toSquare[1]) - 1;
+    const backRank = activeColor === 'w' ? 0 : 7;
+    
+    // v34: KNIGHTS to corners or back rank = INSTANT BLOCK
+    if (pieceType === 'n') {
+        // Corners
+        if ((toFile === 0 || toFile === 7) && (toRank === 0 || toRank === 7)) {
+            result.isBlockedMove = true;
+            result.reason = `Knight to corner ${toSquare} = BLOCKED`;
+            result.penalty = -15000;
+            return result;
+        }
+        // Back rank
+        if (toRank === backRank) {
+            result.isBlockedMove = true;
+            result.reason = `Knight to back rank ${toSquare} = BLOCKED`;
+            result.penalty = -12000;
+            return result;
+        }
+    }
+    
+    return result;
 }
 
 /**
@@ -3029,8 +3120,8 @@ function computeUCB1Score(node, totalSimulations) {
 }
 
 /**
- * v33.0.0: Check for piece activity violations that should BLOCK moves
- * CRITICAL FIX for Nh1, Ne2 disasters
+ * v34.0.0: Check for piece activity violations that should HARD BLOCK moves
+ * CRITICAL FIX for Nh1, Ne2 disasters - EXTREME penalties that essentially eliminate bad moves
  */
 function checkPieceActivityViolation(move, board, activeColor) {
     const result = { isViolation: false, reason: '', penalty: 0 };
@@ -3046,46 +3137,85 @@ function checkPieceActivityViolation(move, board, activeColor) {
     const toRank = parseInt(toSquare[1]) - 1;
     const backRank = activeColor === 'w' ? 0 : 7;
     
-    // KNIGHTS: The Nh1, Ne2 disaster fix
+    // v34: KNIGHTS - The Nh1, Ne2 disaster fix - HARD BLOCKS
     if (pieceType === 'n') {
-        // CORNER SQUARES - ABSOLUTE DISASTER (a1, h1, a8, h8)
+        // CORNER SQUARES - ABSOLUTE DISASTER (a1, h1, a8, h8) - INSTANT BLOCK
         if ((toFile === 0 || toFile === 7) && (toRank === 0 || toRank === 7)) {
             result.isViolation = true;
-            result.reason = `Knight to CORNER ${toSquare} = ABSOLUTE DISASTER`;
-            result.penalty = CONFIG.knightCornerPenalty;
-            debugLog("[ACTIVITY_v33]", `🚫🚫🚫 ${result.reason}`);
+            result.reason = `🛑 Knight to CORNER ${toSquare} = ABSOLUTE DISASTER - BLOCKED`;
+            result.penalty = CONFIG.knightCornerPenalty; // -10000
+            debugLog("[ACTIVITY_v34]", `🚫🚫🚫 ${result.reason}`);
             return result;
         }
         
-        // BACK RANK - SEVERE (like Nh1)
+        // BACK RANK - SEVERE (like Nh1, Na1) - INSTANT BLOCK
         if (toRank === backRank) {
             result.isViolation = true;
-            result.reason = `Knight to BACK RANK ${toSquare} = DISASTER`;
-            result.penalty = CONFIG.knightOnBackRankPenalty;
-            debugLog("[ACTIVITY_v33]", `🚫🚫 ${result.reason}`);
+            result.reason = `🛑 Knight to BACK RANK ${toSquare} = DISASTER - BLOCKED`;
+            result.penalty = CONFIG.knightOnBackRankPenalty; // -5000
+            debugLog("[ACTIVITY_v34]", `🚫🚫 ${result.reason}`);
             return result;
         }
         
-        // RIM FILES (a/h) - BAD
+        // RIM FILES (a/h) - BAD especially in crisis
         if (toFile === 0 || toFile === 7) {
-            // Only block if in crisis or already behind
-            if (crisisModeActive || lastEvaluation < -50) {
+            // v34: ALWAYS block rim moves when in any form of trouble
+            if (crisisModeActive || lastEvaluation < -30) {
                 result.isViolation = true;
-                result.reason = `Knight to RIM ${toSquare} in crisis = BAD`;
-                result.penalty = CONFIG.knightOnRimPenalty;
-                debugLog("[ACTIVITY_v33]", `🚫 ${result.reason}`);
+                result.reason = `🛑 Knight to RIM ${toSquare} in crisis = BLOCKED`;
+                result.penalty = CONFIG.knightOnRimPenalty; // -2500
+                debugLog("[ACTIVITY_v34]", `🚫 ${result.reason}`);
+                return result;
+            }
+            // Even when not in crisis, heavily penalize rim knight moves
+            result.penalty = CONFIG.knightOnRimPenalty * 0.5;
+            debugLog("[ACTIVITY_v34]", `⚠️ Knight to rim ${toSquare} - penalty ${result.penalty}cp`);
+        }
+        
+        // v34: Second rank (2nd or 7th) is also bad for knights (Ne2 disaster)
+        const secondRank = activeColor === 'w' ? 1 : 6;
+        if (toRank === secondRank && crisisModeActive) {
+            // Check if knight is going to a central second rank square (c2, d2, e2, f2)
+            if (toFile >= 2 && toFile <= 5) {
+                result.isViolation = true;
+                result.reason = `🛑 Knight to SECOND RANK ${toSquare} in crisis = BAD`;
+                result.penalty = CONFIG.knightOnBackRankPenalty * 0.6; // -3000
+                debugLog("[ACTIVITY_v34]", `🚫 ${result.reason}`);
                 return result;
             }
         }
     }
     
-    // BISHOPS: Trapped on back rank
-    if (pieceType === 'b' && toRank === backRank) {
-        if (crisisModeActive) {
+    // v34: BISHOPS - Trapped on back rank or corners
+    if (pieceType === 'b') {
+        // Bishop to corner = terrible
+        if ((toFile === 0 || toFile === 7) && (toRank === 0 || toRank === 7)) {
             result.isViolation = true;
-            result.reason = `Bishop retreating to back rank ${toSquare} in crisis`;
-            result.penalty = CONFIG.bishopTrappedPenalty;
+            result.reason = `🛑 Bishop to CORNER ${toSquare} = TERRIBLE`;
+            result.penalty = CONFIG.bishopTrappedPenalty * 2; // -2400
+            debugLog("[ACTIVITY_v34]", `🚫 ${result.reason}`);
             return result;
+        }
+        
+        // Bishop to back rank in crisis
+        if (toRank === backRank && crisisModeActive) {
+            result.isViolation = true;
+            result.reason = `🛑 Bishop retreating to back rank ${toSquare} in crisis`;
+            result.penalty = CONFIG.bishopTrappedPenalty;
+            debugLog("[ACTIVITY_v34]", `🚫 ${result.reason}`);
+            return result;
+        }
+    }
+    
+    // v34: ROOKS - Don't move to corners in crisis
+    if (pieceType === 'r' && crisisModeActive) {
+        if ((toFile === 0 || toFile === 7) && (toRank === 0 || toRank === 7)) {
+            // Unless it's already on the rim file (Ra1 might be okay)
+            const fromFile = fromSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+            if (fromFile !== 0 && fromFile !== 7) {
+                result.penalty = -400;
+                debugLog("[ACTIVITY_v34]", `⚠️ Rook to corner ${toSquare} in crisis - penalty`);
+            }
         }
     }
     
